@@ -1,0 +1,931 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extbook
+\begin_preamble
+\usepackage{thmtools}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-bytype
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "Chapter 2 - Phase Plane Analysis"
+\pdf_author "Joshua Saunders"
+\pdf_keywords "phase plane, nonlinear systems, linear systems"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 0.7in
+\bottommargin 0.5in
+\secnumdepth 3
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 0 0 10 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Phase Plane Analysis
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Used with second-order systems.
+ Generate motion trajectories with different initial conditions.
+ Good for
+\end_layout
+
+\begin_layout Itemize
+visualization of nonlinear system
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+see what happens with various initial conditions with out solving differential
+ equations
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+small or smooth trajectories to strong nonlinearities and to 
+\begin_inset Quotes eld
+\end_inset
+
+hard
+\begin_inset Quotes erd
+\end_inset
+
+ trajectories
+\end_layout
+
+\begin_layout Itemize
+control systems can be approximated as second-order systems
+\end_layout
+
+\begin_layout Standard
+Disadvantage
+\end_layout
+
+\begin_layout Itemize
+restricted to first- or second-order systems
+\end_layout
+
+\begin_layout Section
+Concepts of Phase Plane Analysis
+\end_layout
+
+\begin_layout Subsection
+Phase Portraits
+\end_layout
+
+\begin_layout Standard
+Graphical study of system given by
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{aligned}\dot{x}_{1}= & f_{1}\left(x_{1},x_{2}\right)\\
+\dot{x}_{2}= & f_{2}\left(x_{1},x_{2}\right)
+\end{aligned}
+\label{eq:phase_portrait_sys}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\mathbf{x}\left(t\right)$
+\end_inset
+
+ is a solution to Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:phase_portrait_sys"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ with initial conditions 
+\begin_inset Formula $\mathbf{x}\left(0\right)=\mathbf{x}_{0}$
+\end_inset
+
+ and is represented as a curve on the phase plane varying from 
+\begin_inset Formula $t\in[0,\infty)$
+\end_inset
+
+ and is called a 
+\emph on
+phase plane trajectory
+\emph default
+.
+ A family of these curves (solutions with varying initial values) is a 
+\emph on
+phase portrait
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection
+Singular Points
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Singular point
+\emph default
+: equilibrium point in the phase plane (point where system states can stay
+ forever, or 
+\begin_inset Formula $\dot{\mathbf{x}}=0$
+\end_inset
+
+).
+ Linear systems usually only have one equilibrium point (or a 
+\emph on
+continuous 
+\emph default
+set of singular points).
+ The slope of the singular point is given by
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\frac{dx_{2}}{dx_{1}}=\frac{f_{2}\left(x_{1},x_{2}\right)}{f_{1}\left(x_{1},x_{2}\right)}\label{eq:singular_pt_slope}
+\end{equation}
+
+\end_inset
+
+which is 
+\begin_inset Formula $\frac{0}{0}$
+\end_inset
+
+ at a singular point and is therefore indeterminant (hence the name 
+\emph on
+singular
+\emph default
+).
+ Many trajectories may intersect at singular points and much information
+ is gleaned from them as well (a linear system's stability is determined
+ by its singular point).
+\end_layout
+
+\begin_layout Subsection
+Symmetry in Phase Plane Portraits
+\end_layout
+
+\begin_layout Standard
+Phase portraits may have symmetry properties that are known 
+\emph on
+a priori
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Symmetry about 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ axis: 
+\begin_inset Formula $f\left(x_{1},x_{2}\right)=f\left(x_{1},-x_{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Symmetry about 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ axis: 
+\begin_inset Formula $f\left(x_{1},x_{2}\right)=-f\left(-x_{1},x_{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Symmetry about origin: 
+\begin_inset Formula $f\left(x_{1},x_{2}\right)=-f\left(-x_{1},-x_{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Constructing Phase Portraits
+\end_layout
+
+\begin_layout Subsection
+Analytical Method
+\end_layout
+
+\begin_layout Standard
+Solve Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:phase_portrait_sys"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ for 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ as functions of time
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{1}=g_{1}\left(t\right)\qquad x_{2}=g_{2}\left(t\right)
+\]
+
+\end_inset
+
+Or, directly eliminate the time variable using Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:singular_pt_slope"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and then obtaining a functional relation between 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Method of Isoclines
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Isoclines 
+\emph default
+are the set of all points (
+\emph on
+locus
+\emph default
+) with a given slope defined by
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\frac{dx_{2}}{dx_{1}}=\frac{f_{2}\left(x_{1},x_{2}\right)}{f_{1}\left(x_{1},x_{2}\right)}=\alpha\label{eq:phase_plane_isocline}
+\end{equation}
+
+\end_inset
+
+Steps for generating the phase portrait
+\end_layout
+
+\begin_layout Enumerate
+Obtain a field of directions of tangents to the trajectories
+\end_layout
+
+\begin_layout Enumerate
+Form phase plane trajectories
+\end_layout
+
+\begin_layout Section
+Determining Time from Phase Portraits
+\end_layout
+
+\begin_layout Subsection
+Obtaining Time From 
+\begin_inset Formula $\Delta t\approx\Delta x/\dot{x}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\Delta x\approx\dot{x}\Delta t$
+\end_inset
+
+ for a short time 
+\begin_inset Formula $\Delta t$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+use average value of 
+\begin_inset Formula $\dot{x}$
+\end_inset
+
+ (
+\emph on
+velocity
+\emph default
+) during 
+\begin_inset Formula $\Delta t$
+\end_inset
+
+ for a finite magnitude 
+\begin_inset Formula $\Delta x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+length of 
+\emph on
+time
+\emph default
+ corresponding to 
+\begin_inset Formula $\Delta x$
+\end_inset
+
+ is 
+\begin_inset Formula $\Delta t\approx\frac{\Delta x}{\dot{x}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+divide trajectory into small segments and add up the results
+\end_layout
+
+\begin_layout Itemize
+each segment 
+\begin_inset Formula $\Delta x$
+\end_inset
+
+ may not be equally spaced
+\end_layout
+
+\begin_layout Subsection
+Obtaining Time from 
+\begin_inset Formula $t=\int\left(1/\dot{x}\right)dx$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\dot{x}=\frac{dx}{dt}\Longrightarrow dt=\frac{dx}{\dot{x}}$
+\end_inset
+
+ therefore
+\begin_inset Formula 
+\[
+t-t_{0}=\int_{x_{0}}^{x}\left(1/\dot{x}\right)dx
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $x$
+\end_inset
+
+ corresponds to time 
+\begin_inset Formula $t$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ corresponds to time 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Phase Plane Analysis of Linear Systems
+\end_layout
+
+\begin_layout Standard
+The general for second-order linear system is
+\begin_inset Formula 
+\begin{equation}
+\begin{aligned}\dot{x}_{1}=\, & ax_{1}+bx_{2}\\
+\dot{x}_{2}=\, & cx_{1}+dx_{2}
+\end{aligned}
+\label{eq:gen-sec-order-lin-sys}
+\end{equation}
+
+\end_inset
+
+which can be transformed into a scalar second-order system
+\begin_inset Formula 
+\[
+b\dot{x}_{2}=\,bcx_{1}+d\left(\dot{x}_{1}-ax_{1}\right)
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\[
+\ddot{x}_{1}=\,\left(a+d\right)\dot{x}_{1}+\left(cb-ad\right)x_{1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider the second-order linear system described by
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\ddot{x}+a\dot{x}+bx=0\label{eq:second-order-linear-system}
+\end{equation}
+
+\end_inset
+
+with the time history given by
+\begin_inset Formula 
+\begin{equation}
+x\left(t\right)=\begin{cases}
+k_{1}e^{\lambda_{1}t}+k_{2}e^{\lambda_{2}t} & \text{for }\lambda_{1}\neq\lambda_{2}\\
+k_{1}e^{\lambda_{1}t}+k_{2}te^{\lambda_{1}t} & \text{for }\lambda_{1}=\lambda_{2}
+\end{cases}\label{eq:second-order-sys-time-hist}
+\end{equation}
+
+\end_inset
+
+and where 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ are solutions to the characteristic equation (poles)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+s2+as+b=\left(s-\lambda_{1}\right)\left(s-\lambda_{2}\right)=\,0
+\]
+
+\end_inset
+
+And, finally
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{aligned}\lambda_{1}= & \frac{1}{2}\left(-a+\sqrt{a^{2}-4a}\right)\\
+\lambda_{2}= & \frac{1}{2}\left(-a-\sqrt{a^{2}-4a}\right)
+\end{aligned}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The following cases for 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ are
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ are both real and have the same sign
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+\emph on
+stable node
+\series default
+\emph default
+ if both negative
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+\emph on
+unstable node
+\series default
+\emph default
+ if both positive
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ are both real and have opposing signs (
+\series bold
+\emph on
+saddle point
+\series default
+\emph default
+)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ are complex conjugates with non-zero real parts
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+\emph on
+stable focus
+\series default
+\emph default
+ if real parts are negative
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+\emph on
+unstable node
+\series default
+\emph default
+ if real parts are positive
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ are complex conjugates with real parts equal to zero (
+\series bold
+\emph on
+center point
+\series default
+\emph default
+)
+\end_layout
+
+\begin_layout Section
+Phase Plane Analysis of Nonlinear Systems
+\end_layout
+
+\begin_layout Standard
+Local behavior of nonlinear systems can be approximated by linear systems,
+ but nonlinear systems exhibit much more complicated behavior (multiple
+ singular points and 
+\emph on
+limit cycles
+\emph default
+).
+\end_layout
+
+\begin_layout Subsection
+Local Behavior of Nonlinear Systems
+\end_layout
+
+\begin_layout Standard
+Use a Taylor expansion of the system at singular point and at the origin
+ (the system can always be shifted to the origin) the higher order terms
+ can be neglected.
+ The local behavior can now be analyzed using the cases given by linear
+ systems.
+\end_layout
+
+\begin_layout Subsection
+Limit Cycles
+\end_layout
+
+\begin_layout Standard
+Limit cycles are isolated closed curves.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Closed
+\emph default
+: indicates periodicity of curve
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Isolated
+\emph default
+: indicates limiting nature of curve (nearby curves converge/diverge from
+ it)
+\end_layout
+
+\begin_layout Standard
+Classes of limit cycles
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Stable
+\series default
+\emph default
+: all nearby trajectories converge to it as 
+\begin_inset Formula $t\rightarrow\infty$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Unstable
+\series default
+\emph default
+: all nearby trajectories diverge from it as 
+\begin_inset Formula $t\rightarrow\infty$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Semi-stable
+\series default
+\emph default
+: some nearby trajectories converge to it and some diverge from it as 
+\begin_inset Formula $t\rightarrow\infty$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Existence of Limit Cycles
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Note
+\emph default
+: the following theorems do not apply to systems of order greater than two.
+\end_layout
+
+\begin_layout Subsection
+Index Theorem (Poincare)
+\end_layout
+
+\begin_layout Standard
+This describes a relation ship between the existence of a limit cycle and
+ the number of singular points it encloses.
+\end_layout
+
+\begin_layout Theorem
+If a limit cycle exists in the second-order autonomous system Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:phase_portrait_sys"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, then 
+\begin_inset Formula $N=S+1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $N$
+\end_inset
+
+ is the number of nodes, centers, and foci enclosed by a limit cycle and
+ 
+\begin_inset Formula $S$
+\end_inset
+
+ is the number of enclosed saddle points.
+ A consequence of this theorem is that a limit cycle must enclose at least
+ one equilibrium point.
+\end_layout
+
+\begin_layout Subsection
+Poincare-Bendixson
+\end_layout
+
+\begin_layout Standard
+This theorem is concerned about the asymptotic properties of trajectories
+ of Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:phase_portrait_sys"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+If a trajectory of the second-order autonomous system remains in a finite
+ region 
+\begin_inset Formula $\mathbf{\Omega}$
+\end_inset
+
+, then one of the following is true:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+the trajectory goes to an equilibrium point
+\end_layout
+
+\begin_layout Enumerate
+the trajectory tends to an asymptotically stable limit cycle
+\end_layout
+
+\begin_layout Enumerate
+the trajectory is itself a limit cycle
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Bendixson
+\end_layout
+
+\begin_layout Standard
+This theorem provides a sufficient condition for the non-existence of limit
+ cycles.
+\end_layout
+
+\begin_layout Theorem
+For the nonlinear system Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:phase_portrait_sys"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, no limit cycle can exist in a region 
+\begin_inset Formula $\mathbf{\Omega}$
+\end_inset
+
+ of the phase plane in which 
+\begin_inset Formula $\nicefrac{\partial f_{1}}{\partial x_{1}}+\nicefrac{\partial f_{2}}{\partial x_{2}}$
+\end_inset
+
+ does not vanish and does not change sign.
+\end_layout
+
+\end_body
+\end_document

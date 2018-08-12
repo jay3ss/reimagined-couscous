@@ -1,0 +1,2810 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extbook
+\begin_preamble
+\usepackage{thmtools}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-bytype
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "Chapter 3 - Fundamentals of Lyapunov Theory"
+\pdf_author "Joshua Saunders"
+\pdf_keywords "fundamentals, lyapunov theory, nonlinear systems, linear systems, jacobian, linearization"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 0.7in
+\bottommargin 0.5in
+\secnumdepth 3
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 0 0 10 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Fundamentals of Lyapunov Theory
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:fundamentals-of-lyapunov-theory"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Nonlinear Systems and Equilibrium Points
+\end_layout
+
+\begin_layout Standard
+A nonlinear system can be represented by a differential equation such as
+ the on given by Equation 
+\begin_inset Formula 
+\begin{equation}
+\mathbf{\dot{x}}=\mathbf{f}\left(\mathbf{x},t\right)\label{eq:general-nonlinear-system}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ is the state vector and 
+\begin_inset Formula $\mathbf{f}$
+\end_inset
+
+ is a nonlinear vector function, both of size 
+\begin_inset Formula $n\times1$
+\end_inset
+
+ (
+\begin_inset Formula $n$
+\end_inset
+
+ is the number of states of 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+).
+ It should be noted, however, that Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-nonlinear-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ does not explicitly depend on the control variable 
+\begin_inset Formula $\boldsymbol{u}$
+\end_inset
+
+ although it still can represent the closed-loop dynamics of a control system
+ if the input 
+\begin_inset Formula $\boldsymbol{u}$
+\end_inset
+
+ is dependent on 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-nonlinear-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ can be rewritten to explicitly depend on the control input as shown in
+ Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-nonlinear-system-with-u"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and the closed-loop dynamics given in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-nonlinear-system-with-g"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ ,
+\begin_inset Formula 
+\begin{align}
+\mathbf{\dot{x}}= & \,\mathbf{f}\left(\mathbf{x},\boldsymbol{u},t\right)\label{eq:general-nonlinear-system-with-u}\\
+\mathbf{\dot{x}}= & \,\mathbf{f}\left[\mathbf{x},\boldsymbol{g}\left(\mathbf{x},t\right),t\right]\label{eq:general-nonlinear-system-with-g}
+\end{align}
+
+\end_inset
+
+where 
+\begin_inset Formula $\boldsymbol{u}=\boldsymbol{g}\left(\mathbf{x},t\right)$
+\end_inset
+
+.
+ The dynamics of linear systems can be written in the form given by Equation
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-linear-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\mathbf{\dot{x}}=\mathbf{A}\left(t\right)\mathbf{x}\label{eq:general-linear-system}
+\end{equation}
+
+\end_inset
+
+ with 
+\begin_inset Formula $\mathbf{A}\left(t\right)$
+\end_inset
+
+ being an 
+\begin_inset Formula $n\times n$
+\end_inset
+
+ matrix.
+\end_layout
+
+\begin_layout Subsection
+Autonomous and Non-Autonomous Systems
+\end_layout
+
+\begin_layout Standard
+Autonomous and non-autonomous systems are the generalized versions of time-invar
+iant and time-varying systems found in linear systems.
+ A system is autonomous if it does not explicitly depend on time (otherwise
+ it is non-autonomous) as shown in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-autonomous-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\mathbf{\dot{x}}=\mathbf{f}\left(\mathbf{x}\right).\label{eq:general-autonomous-system}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All systems are non-autonomous, because no dynamic characteristics are time-inva
+riant.
+ It's also important to note that the above definition is made on the closed-loo
+p dynamics for control systems.
+ The non-autonomous nature of the system can either be due to the time-varying
+ nature of the plant or the control law (the book gives an example of 
+\begin_inset Formula $u=-x^{2}\sin\left(t\right)$
+\end_inset
+
+).
+ Fundamentally, the difference between autonomous and non-autonomous systems
+ is the dependence on the initial time of the state trajectory for non-autonomou
+s systems.
+ This means that, for non-autonomous systems, the initial time must be considere
+d for stability.
+\end_layout
+
+\begin_layout Subsection
+Equilibrium Points
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:autonomous-system-equilibrium-point"
+
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{x}^{*}$
+\end_inset
+
+ is an 
+\emph on
+equilibrium point 
+\emph default
+(or 
+\emph on
+state
+\emph default
+) if once 
+\begin_inset Formula $\boldsymbol{x}\left(t\right)=\boldsymbol{x}^{*}$
+\end_inset
+
+, 
+\begin_inset Formula $\boldsymbol{x}\left(t\right)$
+\end_inset
+
+ stays at 
+\begin_inset Formula $\boldsymbol{x}^{*}$
+\end_inset
+
+ for all remaining time.
+\end_layout
+
+\begin_layout Standard
+To find 
+\begin_inset Formula $\boldsymbol{x}^{*}$
+\end_inset
+
+, Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:equilibrium-point"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is used
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{0}=\boldsymbol{f}\left(\boldsymbol{x}^{*}\right).\label{eq:equilibrium-point}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Linear time-invariant (LTI) systems have one equilibrium point at the origin
+ if the matrix 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ is nonsingular.
+ LTI systems have infinite equilibrium points in the null-space of 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ if it is singular.
+ Nonlinear systems can have several to infinitely many equilibrium points.
+ Equilibrium points for linear and nonlinear systems can be transformed
+ to the origin which can make analysis easier.
+\end_layout
+
+\begin_layout Subsection
+Nominal Motion
+\end_layout
+
+\begin_layout Standard
+Sometimes we are concerned with the stability of a system to its original
+ trajectory if subjected to slight perturbation (motion stability).
+ This motion stability can be transformed to an equivalent stability problem
+ about an equilibrium point, but the equivalent system will then be autonomous.
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\boldsymbol{x}^{*}\left(t\right)$
+\end_inset
+
+ be a solution to 
+\begin_inset Formula $\boldsymbol{\dot{x}}=\boldsymbol{f}\left(\boldsymbol{x}\right)$
+\end_inset
+
+ with initial value 
+\begin_inset Formula $\boldsymbol{x}^{*}\left(t\right)=\boldsymbol{x}_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{x}\left(0\right)=\boldsymbol{x}_{0}+\delta\boldsymbol{x}_{0}$
+\end_inset
+
+ be a perturbation of the initial condition.
+ The error associated with the variation of the motion error is given in
+ Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:variation-of-motion-error"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{e}\left(t\right)=\boldsymbol{x}\left(t\right)-\boldsymbol{x}^{*}\left(t\right).\label{eq:variation-of-motion-error}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Both 
+\begin_inset Formula $\boldsymbol{x}^{*}\left(t\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{x}\left(t\right)$
+\end_inset
+
+ are solutions to Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-autonomous-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and therefore we have
+\begin_inset Formula 
+\begin{align*}
+\dot{\boldsymbol{x}}^{*}=\boldsymbol{f}\left(\boldsymbol{x}^{*}\right) & \qquad\boldsymbol{x}\left(0\right)=\boldsymbol{x}_{0}\\
+\dot{\boldsymbol{x}}=\boldsymbol{f}\left(\boldsymbol{x}^{*}\right) & \qquad\boldsymbol{x}\left(0\right)=\boldsymbol{x}_{0}+\delta\boldsymbol{x}_{0}
+\end{align*}
+
+\end_inset
+
+then 
+\begin_inset Formula $\boldsymbol{e}\left(t\right)$
+\end_inset
+
+ satisfies the non-autonomous differential equation found in Equation
+\begin_inset Formula 
+\begin{equation}
+\dot{\boldsymbol{e}}\left(t\right)=\boldsymbol{f}\left(\boldsymbol{x}^{*}+\boldsymbol{e},t\right)-\boldsymbol{f}\left(\boldsymbol{x}^{*},t\right)=\boldsymbol{g}\left(\boldsymbol{e},t\right)\label{eq:error-differential-equation}
+\end{equation}
+
+\end_inset
+
+ with initial conditions 
+\begin_inset Formula $\boldsymbol{e}\left(0\right)=\delta\boldsymbol{x}_{0}$
+\end_inset
+
+ .
+ Because 
+\begin_inset Formula $\boldsymbol{g}\left(\boldsymbol{0},t\right)=\boldsymbol{0}$
+\end_inset
+
+ , the equilibrium of the new system is at the origin and is non-autonomous
+ due to the presence of 
+\begin_inset Formula $\boldsymbol{x}^{*}\left(t\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Concepts of Stability
+\end_layout
+
+\begin_layout Standard
+Nonlinear systems may exhibit much more complex and exotic behavior than
+ linear systems and, therefore, different stability concepts are needed
+ to describe them.
+ More concepts to describe this behavior such as asymptotic stability, exponenti
+al stability, and global asymptotic stability will be introduced for for
+ autonomous systems.
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\boldsymbol{B}_{R}$
+\end_inset
+
+ be a spherical region defined by 
+\begin_inset Formula $\left\Vert \boldsymbol{x}\right\Vert <R$
+\end_inset
+
+ in state-space and 
+\begin_inset Formula $\boldsymbol{S}_{R}$
+\end_inset
+
+ be the sphere itself defined by 
+\begin_inset Formula $\left\Vert \boldsymbol{x}\right\Vert =R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Stability and Instability
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:verbose-lyapunov-stability"
+
+\end_inset
+
+The equilibrium state 
+\begin_inset Formula $\boldsymbol{x}=\boldsymbol{0}$
+\end_inset
+
+ is 
+\emph on
+stable
+\emph default
+ if, for any 
+\begin_inset Formula $R>0$
+\end_inset
+
+, 
+\begin_inset Formula $\exists r>0$
+\end_inset
+
+ such that if 
+\begin_inset Formula $\left\Vert \boldsymbol{x}\left(0\right)\right\Vert <r$
+\end_inset
+
+, then 
+\begin_inset Formula $\left\Vert \boldsymbol{x}\left(t\right)\right\Vert <R$
+\end_inset
+
+ 
+\begin_inset Formula $\forall t\in\left[0,\infty\right)$
+\end_inset
+
+.
+ Otherwise, 
+\begin_inset Formula $\boldsymbol{x}=\boldsymbol{0}$
+\end_inset
+
+ is 
+\emph on
+unstable
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Stability (a.k.a.
+ 
+\emph on
+Lyapunov stability
+\emph default
+) means that the system trajectory can be kept arbitrarily close (
+\begin_inset Formula $R$
+\end_inset
+
+) to the origin by starting sufficiently close (
+\begin_inset Formula $r$
+\end_inset
+
+) to it.
+ Definition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:verbose-lyapunov-stability"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ can be written as shown in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lyapunov-magnitude-definition"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\forall\,R>0,\,\exists\,r>0,\;\left\Vert \boldsymbol{x}\left(0\right)\right\Vert <r\quad\Rightarrow\quad\forall\,t\geq0,\;\left\Vert \boldsymbol{x}\left(t\right)\right\Vert <R\label{eq:lyapunov-magnitude-definition}
+\end{equation}
+
+\end_inset
+
+or, as in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lyapunov-set-definition"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\forall\,R>0,\,\exists\,r>0,\;\boldsymbol{x}\left(0\right)\in\boldsymbol{B}_{r}\quad\Rightarrow\quad\forall\,t\geq0,\;\boldsymbol{x}\left(t\right)\in\boldsymbol{B}_{R}.\label{eq:lyapunov-set-definition}
+\end{equation}
+
+\end_inset
+
+On the other hand, an 
+\emph on
+unstable
+\emph default
+ equilibrium is one if 
+\begin_inset Formula $\exists\,\boldsymbol{B}_{R}$
+\end_inset
+
+ such that 
+\begin_inset Formula $\forall\,r>0$
+\end_inset
+
+, the trajectory can start in 
+\begin_inset Formula $\boldsymbol{B}_{r}$
+\end_inset
+
+ and leave 
+\begin_inset Formula $\boldsymbol{B}_{R}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Asymptotic Stability and Exponential Stability
+\end_layout
+
+\begin_layout Standard
+For many applications, Lyapunov stability may not be sufficient.
+ For example, it is desired to not only know whether or not a satellite
+ will maintain its attitude within a given range, but to also know if it
+ will go back to its original attitude when disturbed.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:examples-of-different-types-of-stabilities"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows three types of stability that equilibrium points can be: trajectory
+ 1 is unstable, trajectory 2 is asymptotically stable, and trajectory 3
+ is marginally stable where 
+\begin_inset Formula $\boldsymbol{S}_{r}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{S}_{R}$
+\end_inset
+
+ are the spheres with radius 
+\begin_inset Formula $r$
+\end_inset
+
+ and 
+\begin_inset Formula $R$
+\end_inset
+
+, respectively.
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:asymptotically-stable"
+
+\end_inset
+
+An equilibrium point 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ is 
+\emph on
+asymptotically stable
+\emph default
+ if it's stable and 
+\begin_inset Formula $\exists\,r>0$
+\end_inset
+
+ such that 
+\begin_inset Formula $\left\Vert \boldsymbol{x}\left(0\right)\right\Vert <r$
+\end_inset
+
+ implies that 
+\begin_inset Formula $\boldsymbol{x}\left(t\right)\rightarrow\boldsymbol{0}$
+\end_inset
+
+ as 
+\begin_inset Formula $t\rightarrow\infty$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Basically, what Definition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:asymptotically-stable"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is saying that the equilibrium is stable and states that start close to
+ the equilibrium 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ will converge to 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ as time goes to infinity.
+ In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:examples-of-different-types-of-stabilities"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, trajectories 2 starts within the sphere 
+\begin_inset Formula $\boldsymbol{S}_{r}$
+\end_inset
+
+ and eventually converges to the equilibrium labeled 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+.
+ This region 
+\begin_inset Formula $\boldsymbol{S}_{r}$
+\end_inset
+
+ is called the 
+\emph on
+domain of attraction
+\emph default
+ of the equilibrium point 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+.
+ The domain of attraction is the largest region such that all trajectories
+ initiated in it will eventually converge to 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+.
+ A 
+\emph on
+marginally stable
+\emph default
+ equilibrium point is a Lyapunov stable equilibrium point that is not asymptotic
+ally stable (e.g., trajectory 3).
+ If 
+\begin_inset Formula $r=\infty$
+\end_inset
+
+ then it is called 
+\emph on
+global
+\emph default
+ asymptotic stability (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:local-and-global-stability"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imgs/lyapunov-stability-equilibrium.svg
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Examples of different types of stability
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:examples-of-different-types-of-stabilities"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:exponential-stability"
+
+\end_inset
+
+The equilibrium point 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ is 
+\emph on
+exponentially stable
+\emph default
+ if there exists two strictly positive numbers 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\begin{equation}
+\forall\,t>0,\quad\left\Vert \boldsymbol{x}\left(t\right)\right\Vert \leq\alpha\left\Vert \boldsymbol{x}\left(0\right)\right\Vert \mathrm{e}^{-\lambda t}\label{eq:exponentially-stable-definition}
+\end{equation}
+
+\end_inset
+
+in some ball 
+\begin_inset Formula $\boldsymbol{B}_{r}$
+\end_inset
+
+ around the origin.
+\end_layout
+
+\begin_layout Standard
+In other words, for an exponentially stable system the state vector converges
+ to the origin faster than an exponential function (
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is the rate of exponential convergence).
+ With exponential stability, not only do you know where the state goes (to
+ the equilibrium point) but you also know how fast it goes.
+\end_layout
+
+\begin_layout Subsection
+Local and Global Stability
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:local-and-global-stability"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+So far we've been discussing the local behavior of systems which is concerned
+ with how the state evolves after starting near the equilibrium point.
+ But what about if the state doesn't start near the equilibrium point? Local
+ stability does little to tell us how the system will behave in this condition.
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:global-stability"
+
+\end_inset
+
+If asymptotic or exponential stability holds for 
+\emph on
+any
+\emph default
+ initial states, the equilibrium point is asymptotically (or exponentially)
+ stable 
+\emph on
+in the large
+\emph default
+ (or, 
+\emph on
+globally
+\emph default
+).
+\end_layout
+
+\begin_layout Standard
+LTI systems are either asymptotically stable, marginally stable, or unstable.
+ This is because linear asymptotic stability is both asymptotic and exponential.
+ If the system is unstable it blows up.
+\end_layout
+
+\begin_layout Section
+Linearization and Local Stability
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:linearization-and-local-stability"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lyanpunov's linearization method is concerned with the local stability of
+ a nonlinear system is the fundamental justification for using linear control
+ techniques.
+ It shows that stable the stability of the original physical system locally
+ is guaranteed by linear control.
+\end_layout
+
+\begin_layout Standard
+Let's assume that the autonomous system in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-autonomous-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is continuously differentiable.
+ The system can then be written as 
+\begin_inset Formula 
+\begin{equation}
+\dot{\boldsymbol{x}}=\boldsymbol{f}\left(\frac{\partial\boldsymbol{f}}{\partial\boldsymbol{x}}\right)_{\boldsymbol{x}=\boldsymbol{0}}\boldsymbol{x}+\boldsymbol{f}_{\text{h.o.t.}}\left(\boldsymbol{x}\right)\label{eq:autonomous-system-taylor-expansion}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\boldsymbol{f}_{\text{h.o.t.}}$
+\end_inset
+
+ is the higher-order-terms in 
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+ of the Taylor expansion.
+ The Jacobian matrix of 
+\begin_inset Formula $\boldsymbol{f}$
+\end_inset
+
+ at 
+\begin_inset Formula $\boldsymbol{x}=\boldsymbol{0}$
+\end_inset
+
+ can be written as a constant matrix 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ (shown in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:linearized-system-jacobian"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) giving the linearized system about the equilibrium point 
+\begin_inset Formula $\boldsymbol{x}=\boldsymbol{0}$
+\end_inset
+
+, found in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:linearized-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\boldsymbol{A}= & \left(\frac{\partial\boldsymbol{f}}{\partial\boldsymbol{x}}\right)_{\boldsymbol{x}=\boldsymbol{0}}\label{eq:linearized-system-jacobian}\\
+\dot{\boldsymbol{x}}= & \,\boldsymbol{A}\boldsymbol{x}\label{eq:linearized-system}
+\end{align}
+
+\end_inset
+
+which, of course, is ignoring the higher-order-terms 
+\begin_inset Formula $\boldsymbol{f}_{\text{h.o.t.}}$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:lyapunovs-linearization-method"
+
+\end_inset
+
+Lyapunov's linearization method
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+If the linearized system is strictly stable (i.e., all the eigenvalues of
+ 
+\shape italic
+
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ are strictly in the left-half complex plane), then the equilibrium point
+ is asymptotically stable (for the actual nonlinear system).
+\end_layout
+
+\begin_layout Itemize
+If the linearized system is unstable (i.e., if at least on eigenvalue of 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ is in the right-half complex plane), then the equilibrium point is unstable
+ (for the nonlinear system).
+\end_layout
+
+\begin_layout Itemize
+If the linearized system is marginally stable (i.e., all eigenvalues of 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ are in the left-half complex plane but at least one lies on the 
+\begin_inset Formula $j\omega$
+\end_inset
+
+ axis), then one cannot conclude anything from the linear approximation
+ (the equilibrium point may be stable, asymptotically stable, or unstable
+ for the nonlinear system).
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Lyapunov's Direct Method
+\end_layout
+
+\begin_layout Standard
+If the total energy of a system continuously dissipates then it must settle
+ to an equilibrium point.
+ This applies to both linear and nonlinear systems.
+ Therefore, stability of a system may be concluded by examining a single
+ scalar function, 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+.
+ There are relations between mechanical energy and stability:
+\end_layout
+
+\begin_layout Itemize
+zero energy corresponds to an equilibrium point
+\end_layout
+
+\begin_layout Itemize
+asymptotic stability corresponds to mechanical energy going to zero
+\end_layout
+
+\begin_layout Itemize
+instability corresponds to the growth of mechanical energy
+\end_layout
+
+\begin_layout Standard
+The basic method is to generate a scalar function, 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+, that is 
+\begin_inset Quotes eld
+\end_inset
+
+energy-like
+\begin_inset Quotes erd
+\end_inset
+
+ for the dynamic system and examine the time-variation (
+\begin_inset Formula $\dot{V}$
+\end_inset
+
+) of that function.
+\end_layout
+
+\begin_layout Subsection
+Positive Definite Functions and Lyapunov Functions
+\end_layout
+
+\begin_layout Standard
+The scalar function 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ has two properties
+\end_layout
+
+\begin_layout Enumerate
+it is strictly positive unless 
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $\dot{\boldsymbol{x}}$
+\end_inset
+
+ are both zero (positive definite)
+\end_layout
+
+\begin_layout Enumerate
+it is monotonically increasing
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:locally-positive-definite"
+
+\end_inset
+
+A scalar continuous function 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is 
+\emph on
+locally positive definite
+\emph default
+ if 
+\begin_inset Formula $V\left(\boldsymbol{0}\right)=0$
+\end_inset
+
+ and, in a ball 
+\begin_inset Formula $\boldsymbol{B}_{R_{0}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{x}\neq\boldsymbol{0}\qquad\Rightarrow\qquad V\left(\boldsymbol{x}\right)>0\label{eq:locally-positive-definite-definition}
+\end{equation}
+
+\end_inset
+
+If 
+\begin_inset Formula $V\left(\boldsymbol{0}\right)=0$
+\end_inset
+
+ and the above property holds over the whole state-space then 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is 
+\emph on
+globally positive definite
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Definition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:locally-positive-definite"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ implies that 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ has a unique minimum at the origin 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+An example of a locally positive definite Lyapunov function, from the example
+ given on page 59 of Slotine et al is given in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-locally-positive-definite-lyapunov-function"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:example-locally-positive-definite-lyapunov-function"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+V\left(\boldsymbol{x}\right)=\frac{1}{2}MR^{2}x_{2}^{2}+MRg\left(1-\cos x_{1}\right).\label{eq:example-locally-positive-definite-lyapunov-function}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imgs/lyapunov-example.svg
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Locally positive definite Lyapunov function
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:example-locally-positive-definite-lyapunov-function"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Some related concepts are that of 
+\end_layout
+
+\begin_layout Itemize
+negative definite: 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is negative definite if 
+\begin_inset Formula $-V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is positive definite
+\end_layout
+
+\begin_layout Itemize
+positive semi-definite: if 
+\begin_inset Formula $V\left(0\right)=0$
+\end_inset
+
+ and 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)\geq0$
+\end_inset
+
+ for 
+\begin_inset Formula $\boldsymbol{x}\neq\boldsymbol{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+negative semi-definite: if 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is negative semi-definite if 
+\begin_inset Formula $-V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is positive semi-definite
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ actually represents an implicit function of time 
+\begin_inset Formula $t$
+\end_inset
+
+ and its derivative with respect to time can be found (assuming that it
+ is differentiable) by the chain rule and shown in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lyapunov-function-time-derivative"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{equation}
+\dot{V}=\frac{dV\left(\boldsymbol{x}\right)}{dt}=\frac{\partial V\left(\boldsymbol{x}\right)}{\partial\boldsymbol{x}}\,\dot{\boldsymbol{x}}=\frac{\partial V}{\partial\boldsymbol{x}}\,\boldsymbol{f}\left(\boldsymbol{x}\right).\label{eq:lyapunov-function-time-derivative}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:lyapunov-function"
+
+\end_inset
+
+If, in a ball 
+\begin_inset Formula $\boldsymbol{B}_{R_{0}}$
+\end_inset
+
+, the function 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is positive definite and has continuous partial derivatives, and if its
+ time derivative along any state trajectory of Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-autonomous-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is negative semi-definite, or
+\begin_inset Formula 
+\[
+\dot{V}\left(\boldsymbol{x}\right)\leq0
+\]
+
+\end_inset
+
+then 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is said to be a 
+\emph on
+Lyapunov function
+\emph default
+ for the system described by Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-autonomous-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Equilibrium Point Theorems
+\end_layout
+
+\begin_layout Subsubsection
+Lyapunov Theorem for Local Stability
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:lyapunov-local-stability"
+
+\end_inset
+
+If, in a ball 
+\begin_inset Formula $\boldsymbol{B}_{R_{0}}$
+\end_inset
+
+, there exists a scalar function 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ with continuous first partial derivatives such that
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is positive definite (locally in 
+\begin_inset Formula $\boldsymbol{B}_{R_{0}}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\dot{V}\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is negative semi-definite (locally in 
+\begin_inset Formula $\boldsymbol{B}_{R_{0}}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+then the equilibrium point 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ is stable.
+ If, actually the derivative 
+\begin_inset Formula $\dot{V}\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is locally negative definite in 
+\begin_inset Formula $\boldsymbol{B}_{R_{0}}$
+\end_inset
+
+, then the stability is asymptotic.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Let's look at a couple of examples.
+ First, let's examine local stability.
+\end_layout
+
+\begin_layout Example
+Local Stability
+\end_layout
+
+\begin_layout Example
+The dynamics of a damped pendulum is given in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-dynamics-of-damped-pendulum"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\ddot{\theta}+\dot{\theta}+\sin\theta=0.\label{eq:example-dynamics-of-damped-pendulum}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+A possible Lyapunov function is one that is a combination of the kinetic
+ and potential energies, given in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-damped-pendulum-lyapunov-function"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+V\left(\boldsymbol{x}\right)=\left(1-\cos\theta\right)+\frac{\dot{\theta}^{2}}{2}.\label{eq:example-damped-pendulum-lyapunov-function}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Let's verify that 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is locally positive definite.
+ This can be done by examining the time-derivative of 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+, noting that 
+\begin_inset Formula $\dot{V}\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is the power dissipation and is shown in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-damped-pendulum-vdot"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\dot{V}\left(\boldsymbol{x}\right)=\dot{\theta}\sin\theta+\dot{\theta}\ddot{\theta}=-\dot{\theta}^{2}\leq0.\label{eq:example-damped-pendulum-vdot}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Because Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-damped-pendulum-vdot"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ represents the power dissipation of the system and it is always negative
+ we can conclude that the system is stable because the energy will eventually
+ go to zero.
+ Because Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-damped-pendulum-vdot"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is only negative semi-definite, we cannot say anything about the systems
+ asymptotic stability.
+\end_layout
+
+\begin_layout Standard
+Next, let's examine asymptotic stability.
+\end_layout
+
+\begin_layout Example
+Asymptotic Stability
+\end_layout
+
+\begin_layout Example
+Let a nonlinear system be defined by Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-asymptotic-stability-nonlinear-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+\dot{x}_{1}= & \,x_{1}\left(x_{1}^{2}+x_{2}^{2}-2\right)-4x_{1}x_{2}^{2}\nonumber \\
+\dot{x}_{2}= & \,4x_{1}^{2}x_{2}+x_{2}\left(x_{1}^{2}+x_{2}^{2}-2\right)\label{eq:example-asymptotic-stability-nonlinear-system}
+\end{align}
+
+\end_inset
+
+around its equilibrium point at the origin.
+ Let the positive definite function in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-asymptotic-stability-lyapunov"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ be the Lyapunov function
+\begin_inset Formula 
+\begin{equation}
+V\left(\boldsymbol{x}\right)=x_{1}^{2}+x_{2}^{2}.\label{eq:example-asymptotic-stability-lyapunov}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+The time-derivative for Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-asymptotic-stability-lyapunov"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is given in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-asymptotic-stability-vdot"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\dot{V}\left(\boldsymbol{x}\right)=2\left(x_{1}^{2}+x_{2}^{2}\right)\left(x_{1}^{2}+x_{2}^{2}-2\right)\label{eq:example-asymptotic-stability-vdot}
+\end{equation}
+
+\end_inset
+
+which is locally negative definite in the region 
+\begin_inset Formula $x_{1}^{2}+x_{2}^{2}<2$
+\end_inset
+
+.
+ Therefore, the origin is asymptotically stable.
+\end_layout
+
+\begin_layout Subsection
+Lyapunov Theorem for Global Stability
+\end_layout
+
+\begin_layout Standard
+For a system to have 
+\emph on
+global
+\emph default
+ stability, the radius of the ball 
+\begin_inset Formula $\boldsymbol{B}_{R_{0}}$
+\end_inset
+
+ must be extended to infinity and 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ must be 
+\emph on
+radially bounded
+\emph default
+.
+ To be radially bounded, 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)\rightarrow\infty$
+\end_inset
+
+ as 
+\begin_inset Formula $\left\Vert \boldsymbol{x}\right\Vert \rightarrow\infty$
+\end_inset
+
+ (as 
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+ tends to infinity in any direction).
+\end_layout
+
+\begin_layout Theorem
+Global Stability
+\end_layout
+
+\begin_layout Theorem
+Assume that there exists a scalar function 
+\begin_inset Formula $V$
+\end_inset
+
+ of the state 
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+, with continuous first order derivatives such that
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is positive definite
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\dot{V}\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is negative definite
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $V\left(\boldsymbol{x}\right)\rightarrow\infty$
+\end_inset
+
+ as 
+\begin_inset Formula $\left\Vert \boldsymbol{x}\right\Vert \rightarrow\infty$
+\end_inset
+
+ (
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is radially bounded)
+\end_layout
+
+\begin_layout Standard
+then the equilibrium at the origin is globally asymptotically stable.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The reason that 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ needs to be radially bounded is so that the contours 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)=V_{\alpha}$
+\end_inset
+
+.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:example-locally-positive-definite-lyapunov-contour-plot"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the contour plot for the Lyapunov function, 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+, found in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-locally-positive-definite-lyapunov-function"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The contour lines of this 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ are not all closed which means that 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is not radially bounded system and the system is only locally stable, not
+ globally.
+ If all of the contour curves were closed , then it would not be possible
+ for state trajectories to drift away from the equilibrium point.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imgs/lyapunov-contours-example.svg
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Contour plot for a non-radially bounded function 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:example-locally-positive-definite-lyapunov-contour-plot"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Many different Lyapunov functions may exist for a system (i.e., they are not
+ unique) and some may reveal more about a system than others.
+ For example, Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-locally-positive-definite-lyapunov-function"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is a Lyapunov function for the damped pendulum system given in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-dynamics-of-damped-pendulum"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, but so is Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-pendulum-second-lyapunov-function"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{equation}
+V\left(\boldsymbol{x}\right)=\frac{1}{2}\dot{\theta}^{2}+\frac{1}{2}\left(\dot{\theta}+\theta\right)^{2}+2\left(1-\cos\theta\right).\label{eq:example-pendulum-second-lyapunov-function}
+\end{equation}
+
+\end_inset
+
+In fact, the Lyapunov function given in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-pendulum-second-lyapunov-function"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows that the system is asymptotically stable because it's time-derivative
+ is negative definite, as shown in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-pendulum-second-lyapunov-time-derivative"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\dot{V}\left(\boldsymbol{x}\right)=-\left(\dot{\theta}^{2}+\theta\sin\theta\right)\leq0.\label{eq:example-pendulum-second-lyapunov-time-derivative}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Invariant Set Theorems
+\end_layout
+
+\begin_layout Standard
+The previous theorems can be difficult to apply to show asymptotic stability,
+ often because 
+\begin_inset Formula $\dot{V}\left(x\right)$
+\end_inset
+
+ of the candidate Lyapunov function is negative semi-definite.
+ Despite this, it's still possible to show asymptotic stability using the
+ invariant set theorems.
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:invariant-set"
+
+\end_inset
+
+A set 
+\begin_inset Formula $\boldsymbol{G}$
+\end_inset
+
+ is an 
+\emph on
+invariant set
+\emph default
+ for a dynamic system if every system trajectory which starts from a point
+ in 
+\series bold
+
+\begin_inset Formula $\boldsymbol{G}$
+\end_inset
+
+
+\series default
+ remains in 
+\begin_inset Formula $\boldsymbol{G}$
+\end_inset
+
+ for all future time.
+\end_layout
+
+\begin_layout Standard
+This is motivated in part by the fact that requiring 
+\begin_inset Formula $\dot{V}\left(x\right)$
+\end_inset
+
+ to be negative definite is too strong and to show more general behaviors
+ such as convergence to limit cycles.
+\end_layout
+
+\begin_layout Subsubsection
+Local Invariant Set Theorem
+\end_layout
+
+\begin_layout Theorem
+Local Invariant Set Theorem
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Consider an autonomous system of the form found in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-autonomous-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, with 
+\begin_inset Formula $\boldsymbol{f}$
+\end_inset
+
+ continuous and let 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ be a scalar function with continuous first partial derivatives.
+ Assume that
+\end_layout
+
+\begin_layout Itemize
+for some 
+\begin_inset Formula $l>0$
+\end_inset
+
+, the region 
+\begin_inset Formula $\boldsymbol{\Omega}_{l}$
+\end_inset
+
+ defined by 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)<l$
+\end_inset
+
+ is bounded
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\dot{V}\left(\boldsymbol{x}\right)\leq0$
+\end_inset
+
+ for all 
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+ in 
+\begin_inset Formula $\boldsymbol{\Omega}_{l}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\boldsymbol{R}$
+\end_inset
+
+ be the set of all points within 
+\begin_inset Formula $\boldsymbol{\Omega}_{l}$
+\end_inset
+
+ where 
+\begin_inset Formula $\dot{V}\left(\boldsymbol{x}\right)=0$
+\end_inset
+
+, and 
+\begin_inset Formula $\boldsymbol{M}$
+\end_inset
+
+ be the largest invariant set in 
+\begin_inset Formula $\boldsymbol{R}$
+\end_inset
+
+.
+ Then, every solution 
+\begin_inset Formula $\boldsymbol{x}\left(t\right)$
+\end_inset
+
+ originating in 
+\begin_inset Formula $\boldsymbol{\Omega}_{l}$
+\end_inset
+
+ tends to 
+\begin_inset Formula $\boldsymbol{M}$
+\end_inset
+
+ as 
+\begin_inset Formula $t\rightarrow\infty$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Here, 
+\begin_inset Formula $\boldsymbol{M}$
+\end_inset
+
+ is the union of all invariant sets (e.g., equilibrium points or limit cycles)
+ within 
+\begin_inset Formula $\boldsymbol{R}$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $\boldsymbol{R}$
+\end_inset
+
+ is the invariant set then 
+\begin_inset Formula $\boldsymbol{M}=\boldsymbol{R}$
+\end_inset
+
+.
+ Although 
+\begin_inset Formula $V$
+\end_inset
+
+ is still referred to as the Lyapunov function it is no longer required
+ to be positive definite.
+\end_layout
+
+\begin_layout Corollary
+\begin_inset CommandInset label
+LatexCommand label
+name "cor:local-invariant-set"
+
+\end_inset
+
+Consider the autonomous system found in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-autonomous-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, with 
+\begin_inset Formula $\boldsymbol{f}$
+\end_inset
+
+ continuous and let 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ be a scalar function with continuous first partial derivatives.
+ Assume that in a certain neighborhood 
+\begin_inset Formula $\boldsymbol{\Omega}$
+\end_inset
+
+ of the origin
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ is locally positive definite
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\dot{V}$
+\end_inset
+
+ is negative semi-definite
+\end_layout
+
+\begin_layout Itemize
+the set 
+\begin_inset Formula $\boldsymbol{R}$
+\end_inset
+
+ defined by 
+\begin_inset Formula $\dot{V}\left(\boldsymbol{x}\right)=0$
+\end_inset
+
+ contains no trajectories of Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-autonomous-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ other than the trivial trajectory 
+\shape italic
+
+\begin_inset Formula $\boldsymbol{x}=\boldsymbol{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then, the equilibrium point 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ is asymptotically stable.
+ Furthermore, the largest connected region of the form 
+\begin_inset Formula $\boldsymbol{\Omega}_{l}$
+\end_inset
+
+ (defined by 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)<l$
+\end_inset
+
+) within 
+\begin_inset Formula $\boldsymbol{\Omega}$
+\end_inset
+
+ is a domain of attraction of the equilibrium point.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+In this case, the largest invariant set 
+\begin_inset Formula $\boldsymbol{M}$
+\end_inset
+
+ in 
+\begin_inset Formula $\boldsymbol{R}$
+\end_inset
+
+ only contains the equilibrium point 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+.
+ Note that
+\end_layout
+
+\begin_layout Itemize
+Corollary 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cor:local-invariant-set"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ removes the condition that 
+\begin_inset Formula $\dot{V}$
+\end_inset
+
+ must be negative definite and says instead that 
+\begin_inset Formula $\dot{V}$
+\end_inset
+
+ only needs to be negative 
+\emph on
+semi
+\emph default
+-definite
+\end_layout
+
+\begin_layout Itemize
+the largest connected region of the form 
+\begin_inset Formula $\boldsymbol{\Omega}_{l}$
+\end_inset
+
+ within 
+\begin_inset Formula $\boldsymbol{\Omega}$
+\end_inset
+
+ is a domain of attraction of the equilibrium point, but not necessarily
+ the entire domain of attraction due to the non-uniqueness of 
+\begin_inset Formula $V$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{\Omega}$
+\end_inset
+
+ is not necessarily a domain of attraction and is not guaranteed to be invariant.
+ Some trajectories originating in 
+\begin_inset Formula $\boldsymbol{\Omega}$
+\end_inset
+
+ but outside of 
+\begin_inset Formula $\boldsymbol{\Omega}_{l}$
+\end_inset
+
+ may end up outside of 
+\begin_inset Formula $\boldsymbol{\Omega}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Global Invariant Set Theorems
+\end_layout
+
+\begin_layout Standard
+Local invariant set theorems can be extended to be global by requiring the
+ radial unboundedness of the Lyapunov function 
+\begin_inset Formula $V$
+\end_inset
+
+ instead of the existence of a bounded 
+\begin_inset Formula $\boldsymbol{\Omega}_{l}$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:global-invariant-set-theorem"
+
+\end_inset
+
+Global Invariant Set Theorem
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Consider an autonomous system of the form found in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-autonomous-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, with 
+\begin_inset Formula $\boldsymbol{f}$
+\end_inset
+
+ continuous and let 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ be a scalar function with continuous first partial derivatives.
+ Assume that
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $V\left(\boldsymbol{x}\right)\rightarrow\infty$
+\end_inset
+
+ as 
+\begin_inset Formula $\left\Vert \boldsymbol{x}\right\Vert \rightarrow\infty$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\dot{V}\left(\boldsymbol{x}\right)\leq0$
+\end_inset
+
+ over the entire state-space
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\boldsymbol{R}$
+\end_inset
+
+ be the set of all points where 
+\begin_inset Formula $\dot{V}\left(\boldsymbol{x}\right)=0$
+\end_inset
+
+, and 
+\begin_inset Formula $\boldsymbol{M}$
+\end_inset
+
+ be the largest invariant set in 
+\begin_inset Formula $\boldsymbol{R}$
+\end_inset
+
+.
+ Then, every solution globally asymptotically converges to 
+\begin_inset Formula $\boldsymbol{M}$
+\end_inset
+
+ as 
+\begin_inset Formula $t\rightarrow\infty$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:global-invariant-set-theorem"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is important because it relaxes the constraint that 
+\begin_inset Formula $V\left(\boldsymbol{x}\right)$
+\end_inset
+
+ must be positive definite, allows for a single Lyapunov function to describe
+ systems with multiple equilibria, and accounts more general behavior such
+ as convergence to limit cycles.
+\end_layout
+
+\begin_layout Example
+\begin_inset CommandInset label
+LatexCommand label
+name "exa:global-invariant-set-theory-nonlinear-mass-spring-damper"
+
+\end_inset
+
+A class of second-order nonlinear systems
+\end_layout
+
+\begin_layout Example
+Consider a second-order system of the form
+\begin_inset Formula 
+\[
+\ddot{x}+b\left(\dot{x}\right)+c\left(x\right)=0
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $b$
+\end_inset
+
+ and 
+\begin_inset Formula $c$
+\end_inset
+
+ are linear continuous functions verifying the sign conditions
+\begin_inset Formula 
+\begin{align*}
+\dot{x}\,b\left(\dot{x}\right)>0 & \qquad\text{for \;\ensuremath{\dot{x}}\ensuremath{\neq0}}\\
+x\,c\left(x\right)>0 & \qquad\text{for \;\ensuremath{x}\ensuremath{\neq0}.}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Let the Lyapunov function 
+\begin_inset Formula $V$
+\end_inset
+
+ be a combination of the kinetic and potential energies of the system and
+ be described by
+\begin_inset Formula 
+\[
+V\left(\boldsymbol{x}\right)=\frac{1}{2}\dot{x}^{2}+\int_{0}^{x}c\left(y\right)\,dy
+\]
+
+\end_inset
+
+ with the time derivative
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\begin{align*}
+\dot{V}\left(\boldsymbol{x}\right)= & \,\dot{x}\ddot{x}+c\left(x\right)\dot{x}\\
+= & -\dot{x}b\left(\dot{x}\right)-\dot{x}c\left(\dot{x}\right)+\dot{x}c\left(\dot{x}\right)\\
+= & -\dot{x}b\left(\dot{x}\right)\leq0
+\end{align*}
+
+\end_inset
+
+ which represents the power dissipation of the system.
+ Now we notice that 
+\begin_inset Formula $\dot{x}b\left(\dot{x}\right)=0$
+\end_inset
+
+ only if 
+\begin_inset Formula $\dot{x}=0$
+\end_inset
+
+ which implies that 
+\begin_inset Formula $\ddot{x}=-c\left(x\right)$
+\end_inset
+
+ which is non-zero as long as 
+\begin_inset Formula $x\neq0$
+\end_inset
+
+.
+ Therefore, system only converges to the equilibrium 
+\begin_inset Formula $x=0$
+\end_inset
+
+ and the set 
+\begin_inset Formula $\boldsymbol{R}$
+\end_inset
+
+ is defined by 
+\begin_inset Formula $\dot{x}=0$
+\end_inset
+
+ and the largest invariant set, 
+\begin_inset Formula $\boldsymbol{M}$
+\end_inset
+
+, in 
+\begin_inset Formula $\boldsymbol{R}$
+\end_inset
+
+ contains only the point 
+\begin_inset Formula $\left[x=0,\dot{x}=0\right]$
+\end_inset
+
+ and the system is locally asymptotically stable.
+\end_layout
+
+\begin_layout Example
+If the integral 
+\begin_inset Formula $\int_{0}^{x}c\left(y\right)\,dy$
+\end_inset
+
+ is unbounded as 
+\begin_inset Formula $\left|x\right|\rightarrow\infty$
+\end_inset
+
+ then 
+\begin_inset Formula $V$
+\end_inset
+
+ is radially unbounded and the origin 
+\begin_inset Formula $\left[x=0,\dot{x}=0\right]$
+\end_inset
+
+ is globally asymptotically stable.
+\end_layout
+
+\begin_layout Standard
+The previous example could represent a mass-spring damper system, an RLC
+ circuit, or many other systems that have similar damping and spring effects.
+\end_layout
+
+\begin_layout Example
+\begin_inset CommandInset label
+LatexCommand label
+name "exa:global-invariant-set-multimodal"
+
+\end_inset
+
+Multimodal Lyapunov Function
+\end_layout
+
+\begin_layout Example
+Consider the system 
+\begin_inset Formula 
+\[
+\ddot{x}+\left|x^{2}-1\right|\dot{x}^{3}+x=\sin\frac{\pi x}{2}.
+\]
+
+\end_inset
+
+For this system, define the Lyapunov function to be
+\begin_inset Formula 
+\[
+V\left(x\right)=\frac{1}{2}\dot{x}^{2}+\int_{0}^{x}\left(y-\sin\frac{\pi x}{2}\right)dy.
+\]
+
+\end_inset
+
+
+\begin_inset Formula $V\left(x\right)$
+\end_inset
+
+ has two minima at 
+\begin_inset Formula $\left[x=\pm1;\dot{x}=0\right]$
+\end_inset
+
+, and a local maximum in 
+\begin_inset Formula $x$
+\end_inset
+
+ (which is a saddle point) at 
+\begin_inset Formula $\left[x=0;\dot{x}=0\right]$
+\end_inset
+
+.
+ The time-derivative of 
+\begin_inset Formula $V\left(x\right)$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+\dot{V}\left(x\right)=-\left|x^{2}-1\right|\dot{x}^{4}
+\]
+
+\end_inset
+
+ which is, again, is the power (or virtual power as this may not actually
+ represent a physical system).
+ Now,
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+\dot{V}=0\qquad\Rightarrow\qquad\dot{x}=0\quad\text{or}\quad x=\pm1.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Consider the following cases
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\begin{align*}
+\dot{x}= & \,0\quad\Rightarrow\quad\ddot{x}=\sin\frac{\pi x}{2}-x\neq0\quad\text{except if}\quad x=0\;\text{or}\;x=\pm1\\
+x= & \pm1\quad\Rightarrow\quad\ddot{x}=0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+The invariant set theorem indicates that the system will converge to 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\left[x=\pm1;\dot{x}=0\right]$
+\end_inset
+
+ or 
+\begin_inset Formula $\left[x=0;\dot{x}=0\right]$
+\end_inset
+
+ with the first set of equilibrium points being stable since they are local
+ minima of 
+\begin_inset Formula $V$
+\end_inset
+
+ and the second set of equilibrium points being unstable as they lie in
+ a saddle point.
+\end_layout
+
+\begin_layout Standard
+As state earlier, many Lyapunov functions exist for the same system.
+ As such, many invariant sets may be derived.
+ Therefore, the system converges to the intersection the invariant sets.
+\end_layout
+
+\begin_layout Section
+Control Design Based on Lyapunov's Direct Method
+\end_layout
+
+\begin_layout Standard
+There are two ways to use Lyapunov's direct method for designing a controller:
+ hypothesize a one form of control law and then find a Lyapunov function
+ to justify it, and hypothesize a Lyapunov function candidate then find
+ a control law to make the candidate function a real Lyapunov function.
+\end_layout
+
+\begin_layout Example
+\begin_inset CommandInset label
+LatexCommand label
+name "exa:regulator-design"
+
+\end_inset
+
+Regulator Design
+\end_layout
+
+\begin_layout Example
+Consider the problem of stabilizing the system
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+\ddot{x}+\dot{x}^{3}+x^{2}=u
+\]
+
+\end_inset
+
+where the desired behavior is to have the system go the equilibrium at 
+\begin_inset Formula $x\equiv0$
+\end_inset
+
+.
+ It is sufficient to choose a continuous control law 
+\begin_inset Formula $u$
+\end_inset
+
+ of the form (see Example 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exa:global-invariant-set-theory-nonlinear-mass-spring-damper"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+)
+\begin_inset Formula 
+\[
+u=u_{1}\left(\dot{x}\right)+u_{2}\left(x\right)
+\]
+
+\end_inset
+
+where
+\begin_inset Formula 
+\begin{align*}
+\dot{x}\left(\dot{x}^{3}+u_{1}\left(\dot{x}\right)\right)<0 & \qquad\text{for}\;\dot{x}\neq0\\
+x\left(x^{2}-u_{2}\left(x\right)\right)>0 & \qquad\text{for}\;x\neq0.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+A controller that can stabilize the system is
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+u=-2\dot{x}^{3}-5x\left|x\right|
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

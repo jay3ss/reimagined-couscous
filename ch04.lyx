@@ -1,0 +1,696 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extbook
+\begin_preamble
+\usepackage{thmtools}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-bytype
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "Chapter 3 - Fundamentals of Lyapunov Theory"
+\pdf_author "Joshua Saunders"
+\pdf_keywords "fundamentals, lyapunov theory, nonlinear systems, linear systems, jacobian, linearization"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 0.7in
+\bottommargin 0.5in
+\secnumdepth 3
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 0 0 10 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Advanced Stability Theory
+\end_layout
+
+\begin_layout Standard
+The Lyapunov stability theorems will be extended to non-autonomous systems.
+\end_layout
+
+\begin_layout Section
+Concepts of Stability for Non-Autonomous Systems
+\end_layout
+
+\begin_layout Standard
+The concepts of stability for non-autonomous systems is similar to those
+ of autonomous systems, but for non-autonomous systems there is an explicit
+ dependence on the initial time, 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Equilibrium Points and Invariant Sets
+\end_layout
+
+\begin_layout Standard
+For non-autonomous systems of the form given in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:non-autonomous-system-feneral-form"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{equation}
+\dot{x}=\boldsymbol{f}\left(\boldsymbol{x},t\right)\label{eq:non-autonomous-system-feneral-form}
+\end{equation}
+
+\end_inset
+
+equilibrium points, 
+\begin_inset Formula $\boldsymbol{x}^{*}$
+\end_inset
+
+, are given by Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:non-autonomous-system-equilibrium-points"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\dot{x}=\boldsymbol{f}\left(\boldsymbol{x}^{*},t\right)\equiv\boldsymbol{0}\qquad\forall t\geq t_{0}.\label{eq:non-autonomous-system-equilibrium-points}
+\end{equation}
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+The definition of an invariant set is the same for non-autonomous systems
+ as it is for autonomous systems.
+ (See Definition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:invariant-set"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.)
+\end_layout
+
+\begin_layout Subsection
+Extensions of the Previous Stability Concepts
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:non-autonomous-system-stability-inequality-requirements"
+
+\end_inset
+
+The equilibrium point 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ is 
+\emph on
+stable
+\emph default
+ at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ if for any 
+\begin_inset Formula $R>0$
+\end_inset
+
+, there exists a positive scalar 
+\begin_inset Formula $r\left(R,t_{0}\right)$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\[
+\left\Vert \boldsymbol{x}\left(t_{0}\right)\right\Vert <r\quad\Rightarrow\quad\left\Vert \boldsymbol{x}\left(t\right)\right\Vert <R\qquad\forall t\geq t_{0}
+\]
+
+\end_inset
+
+otherwise, the equilibrium point 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ is 
+\emph on
+unstable
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+The difference between Definitions 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:autonomous-system-equilibrium-point"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:non-autonomous-system-stability-inequality-requirements"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is the explicit dependence on the initial time, 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+, in the latter.
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:non-autonomous-equilibrium-point"
+
+\end_inset
+
+The equilibrium point 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ is
+\emph on
+ asymptotically stable
+\emph default
+ at time 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ if
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+it is stable
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\exists r\left(t_{0}\right)>0\;\text{such that}\;\left\Vert \boldsymbol{x}\left(t_{0}\right)\right\Vert <r\left(t_{0}\right)\quad\Rightarrow\quad\left\Vert \boldsymbol{x}\left(t\right)\right\Vert \rightarrow0\;\text{as}\;t\rightarrow\infty$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Definition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:non-autonomous-equilibrium-point"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ states that asymptotic stability for non-autonomous systems requires the
+ existence of an attractive region for every initial time, 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:non-autonomous-exponential-stability"
+
+\end_inset
+
+The equilibrium point 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ is 
+\emph on
+exponentially stable
+\emph default
+ if there exist two positive numbers, 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta$
+\end_inset
+
+, such that for sufficiently small 
+\begin_inset Formula $\boldsymbol{x}\left(t_{0}\right)$
+\end_inset
+
+,
+\begin_inset Formula 
+\[
+\left\Vert \boldsymbol{x}\left(t\right)\right\Vert \leq\left\Vert \boldsymbol{x}_{0}\right\Vert {\rm e}^{-\lambda\left(t-t_{0}\right)}\qquad\forall t\geq t_{0}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:non-autonomous-globally-asymptotic-stability"
+
+\end_inset
+
+The equilibrium point 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ is 
+\emph on
+globally asymptotically stable
+\emph default
+ if 
+\begin_inset Formula $\forall\boldsymbol{x}\left(t_{0}\right)$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\boldsymbol{x}\left(t\right)\rightarrow0\qquad t\rightarrow\infty
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Uniformity in Stability Concepts
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:non-autonomous-equilibrium-uniformly-stable"
+
+\end_inset
+
+The equilibrium point 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ is locally 
+\emph on
+uniformly stable
+\emph default
+ if the scalar 
+\begin_inset Formula $r$
+\end_inset
+
+ in Definition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:non-autonomous-system-stability-inequality-requirements"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ can be chosen independently of 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ , i.e., if 
+\begin_inset Formula $r=r\left(R\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The reason behind the concept of uniformity is to rule out systems that
+ are 
+\begin_inset Quotes eld
+\end_inset
+
+less and less stable
+\begin_inset Quotes erd
+\end_inset
+
+ for larger values of 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+.
+ The definition of uniform asymptotic stability also tends to restrict the
+ effect of the initial time 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ on the state convergence pattern.
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:global-asymptotic-stability"
+
+\end_inset
+
+The equilibrium point at the origin is locally 
+\emph on
+uniformly asymptotically stable
+\emph default
+ if 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+it is uniformly stable
+\end_layout
+
+\begin_layout Itemize
+there exists a ball of attraction 
+\begin_inset Formula $\boldsymbol{B}_{R}$
+\end_inset
+
+, whose radius is independent of 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+, such that any system trajectory with initial states in 
+\begin_inset Formula $\boldsymbol{B}_{R_{0}}$
+\end_inset
+
+ converges to 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ uniformly in 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Uniform convergence in terms of 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ means that for all 
+\begin_inset Formula $R_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{2}$
+\end_inset
+
+ satisfying the condition 
+\begin_inset Formula $0<R_{2}<R_{1}\leq R_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\exists T\left(R_{1},R_{2}\right)>0$
+\end_inset
+
+, such that 
+\begin_inset Formula $\forall t_{0}\geq0$
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{equation}
+\left\Vert \boldsymbol{x}\left(t_{0}\right)\right\Vert <R_{1}\quad\Rightarrow\quad\left\Vert \boldsymbol{x}\left(t\right)\right\Vert <R_{2}\qquad\forall t\geq t_{0}+T\left(R_{1},R_{2}\right).\label{eq:non-autonomous-state-trajectory-converges-to-smaller-ball}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+What Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:non-autonomous-state-trajectory-converges-to-smaller-ball"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ means, is that a state trajectory that starts in the ball 
+\begin_inset Formula $\boldsymbol{B}_{R_{1}}$
+\end_inset
+
+ will converge to the smaller ball 
+\begin_inset Formula $\boldsymbol{B}_{R_{2}}$
+\end_inset
+
+.
+ Uniform asymptotic stability always implies asymptotic stability, but not
+ the other way around.
+ Exponential stability always implies uniform asymptotic stability, and
+ global asymptotic stability can be defined by replacing the ball of attraction
+ 
+\begin_inset Formula $\boldsymbol{B}_{R_{0}}$
+\end_inset
+
+ with the entire state-space.
+\end_layout
+
+\begin_layout Section
+Lyapunov Analysis of Non-Autonomous Systems
+\end_layout
+
+\begin_layout Standard
+Although many of the ideas of Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:fundamentals-of-lyapunov-theory"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ can be applied it is more care must be taken.
+\end_layout
+
+\begin_layout Subsection
+Lyapunov's Direct Method for Non-Autonomous Systems
+\end_layout
+
+\begin_layout Standard
+The major difference between autonomous and non-autonomous systems for the
+ direct method is that La Salle's theorems do not apply.
+\end_layout
+
+\begin_layout Subsubsection
+Time-Varying Positive Definite Functions and Decrescent Functions
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:locally-positive-definite-non-autonomous"
+
+\end_inset
+
+To analyze non-autonomous systems using Lyapunov's direct method system
+ a time-varying scalar function may have to be used.
+\end_layout
+
+\begin_layout Definition
+A scalar time-varying function 
+\begin_inset Formula $V\left(\boldsymbol{x},t\right)$
+\end_inset
+
+ is 
+\emph on
+locally positive definite
+\emph default
+ if 
+\begin_inset Formula $V\left(\boldsymbol{0},t\right)=0$
+\end_inset
+
+ and there exists a time-invariant positive definite function 
+\begin_inset Formula $V_{0}\left(\boldsymbol{x}\right)$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\begin{equation}
+\forall t\geq t_{0},\qquad V\left(\boldsymbol{x},t\right)\geq V_{0}\left(\boldsymbol{x}\right)\label{eq:locally-positive-definite-non-autonomous}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Basically, a time-variant function is locally positive definite if it dominates
+ a time-invariant locally positive definite one.
+ Globally positive definite is defined similarly.
+ Negative definite works similarly, it just needs to be shown that 
+\begin_inset Formula $-V\left(\boldsymbol{x},t\right)$
+\end_inset
+
+ is a positive definite function (similarly for negative semi-definite).
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "def:decrescent-function"
+
+\end_inset
+
+A scalar function 
+\begin_inset Formula $V\left(\boldsymbol{x},t\right)$
+\end_inset
+
+ is decerscent
+\emph on
+ if 
+\emph default
+
+\begin_inset Formula $V\left(\boldsymbol{0},t\right)=0$
+\end_inset
+
+ and if there exists a time-invariant positive definite function 
+\begin_inset Formula $V_{1}\left(\boldsymbol{x}\right)$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\[
+\forall t\geq0,\qquad V\left(\boldsymbol{x},t\right)\leq V_{1}\left(\boldsymbol{x}\right)
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+asdf
+\end_layout
+
+\end_body
+\end_document
