@@ -133,10 +133,36 @@ addcontentsline{toc}{chapter}{Cover}
 
 \begin_layout Title
 Notes on Applied Nonlinear Control
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+[1cm]
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename imgs/lyapunov-example.svg
+	scale 55
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Author
 Joshua Saunders
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Standard
