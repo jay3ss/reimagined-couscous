@@ -689,7 +689,305 @@ A scalar function
 \end_layout
 
 \begin_layout Standard
-asdf
+Basically, a function is decrescent if it is dominated by a time-invariant
+ positive definite function.
+\end_layout
+
+\begin_layout Standard
+To find the time derivative of 
+\begin_inset Formula $V\left(\boldsymbol{x,}t\right)$
+\end_inset
+
+, follow Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:nonlinear-lyapunov-time-derivative"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\frac{dV}{dt}=\frac{\partial V}{\partial t}+\frac{\partial V}{\partial\boldsymbol{x}}\boldsymbol{\dot{x}}=\frac{\partial V}{\partial t}+\frac{\partial V}{\partial\boldsymbol{x}}f\left(\boldsymbol{x},t\right).\label{eq:nonlinear-lyapunov-time-derivative}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Lyapunov Theorem for Non-Autonomous System Stability
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:lyapunov-theorem-for-non-autonomous-systems"
+
+\end_inset
+
+Lyapunov Theorem for Non-Autonomous Systems
+\end_layout
+
+\begin_layout Theorem
+
+\series bold
+Stability
+\series default
+: If, in a ball 
+\begin_inset Formula $\boldsymbol{B}_{R_{0}}$
+\end_inset
+
+ around the equilibrium point 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+, there exists a scalar function 
+\begin_inset Formula $V\left(\boldsymbol{x},t\right)$
+\end_inset
+
+ with continuous partial derivatives such that
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $V$
+\end_inset
+
+ is positive definite
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\dot{V}$
+\end_inset
+
+ is negative semi-definite
+\end_layout
+
+\begin_layout Standard
+then the equilibrium point 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ is stable in the sense of Lyapunov.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Uniform stability and uniform asymptotic stability:
+\series default
+ If, furthermore, 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[3.]
+\backslash
+setcounter{enumi}{3}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $V$
+\end_inset
+
+ is decrescent
+\end_layout
+
+\begin_layout Standard
+then the origin is uniformly stable.
+ If condition 2 is strengthened by requiring that 
+\begin_inset Formula $\dot{V}$
+\end_inset
+
+ be negative definite, then the equilibrium point is uniformly asymptotically
+ stable.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Global uniform asymptotic stability
+\series default
+: If the ball 
+\begin_inset Formula $\boldsymbol{B}_{R_{0}}$
+\end_inset
+
+ is replaced by the whole state-space, and condition 1, the strengthened
+ condition 2, condition 3, and the condition
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[4.]
+\backslash
+setcounter{enumi}{4}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $V\left(\boldsymbol{x},t\right)$
+\end_inset
+
+ is radially unbounded
+\end_layout
+
+\begin_layout Standard
+are all satisfied, then the equilibrium point at 
+\begin_inset Formula $\boldsymbol{0}$
+\end_inset
+
+ is globally uniformly asymptotically stable.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Lyapunov Analysis of Linear Time-Varying Systems
+\end_layout
+
+\begin_layout Standard
+Consider the system given by Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:general-linear-time-varying-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\dot{x}}=\boldsymbol{A}\left(t\right)\boldsymbol{x}.\label{eq:general-linear-time-varying-system}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+LTI systems are asymptotically stable if their eigenvalues all have negative
+ real components.
+ Therefore, it may be tempting to conclude that the same can be said about
+ linear time-varying (LTV) systems as well, for all 
+\begin_inset Formula $t\geq0$
+\end_inset
+
+.
+ This is simply not the case, as shown in Example 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exa:ltv-system-eigenvalues"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Example
+\begin_inset CommandInset label
+LatexCommand label
+name "exa:ltv-system-eigenvalues"
+
+\end_inset
+
+Consider the system
+\begin_inset Formula 
+\[
+\boldsymbol{\dot{x}}=\left[\begin{array}{cc}
+-1 & \mathrm{e}^{\,2t}\\
+0 & -1
+\end{array}\right]\boldsymbol{x}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+The eigenvalues of 
+\begin_inset Formula $\boldsymbol{A}\left(t\right)$
+\end_inset
+
+ are 
+\begin_inset Formula $-1$
+\end_inset
+
+ and 
+\begin_inset Formula $-1$
+\end_inset
+
+.
+ If one were to use the same LTI stability analysis using eigenvalues, then
+ it would be concluded that this system is asymptotically stable.
+ This is not the case, however, which can be shown by explicitly solving
+ this simple system, as shown in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-ltv-stability-analysis-with-eigenvalues"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-ltv-stability-analysis-with-eigenvalues"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows that the 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ is driven by an input that tends towards infinity as 
+\begin_inset Formula $t\rightarrow\infty$
+\end_inset
+
+.
+ This clearly shows that the tools used to determine the stability of an
+ LTI system will not work with an LTV system.
+\begin_inset Formula 
+\begin{align}
+x_{1}+\dot{x}_{1}= & \,x_{2}\left(0\right)\mathrm{e}^{t}\nonumber \\
+x_{2}= & \,x_{2}\left(0\right)\mathrm{e}^{-t}\label{eq:example-ltv-stability-analysis-with-eigenvalues}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The stability of an LTV system can, however, be determined by examining
+ the
 \end_layout
 
 \end_body
