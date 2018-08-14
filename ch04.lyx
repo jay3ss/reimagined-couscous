@@ -986,8 +986,212 @@ x_{2}= & \,x_{2}\left(0\right)\mathrm{e}^{-t}\label{eq:example-ltv-stability-ana
 \end_layout
 
 \begin_layout Standard
-The stability of an LTV system can, however, be determined by examining
- the
+The asymptotic stability of a time-varying system can, however, be determined
+ by examining the eigenvalues of the symmetric matrix 
+\begin_inset Formula $\boldsymbol{A}\left(t\right)+\boldsymbol{A}^{T}\left(t\right)$
+\end_inset
+
+.
+ An time-varying system is asymptotically stable if the eigenvalues (all
+ of which are real) remain strictly in the left-hand complex plane
+\begin_inset Formula 
+\begin{equation}
+\exists\lambda>0,\,\forall i,\,\forall t\geq0,\,\lambda_{i}\left(\boldsymbol{A}\left(t\right)+\boldsymbol{A}^{T}\left(t\right)\right)\leq-\lambda.\label{eq:time-varying-eigenvalue-asymptotic-stability-requirements}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:time-varying-eigenvalue-asymptotic-stability-requirements"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows that by assuming that all of the eigenvalues of 
+\begin_inset Formula $\boldsymbol{A}_{\text{sym}}\left(t\right)=\boldsymbol{A}\left(t\right)+\boldsymbol{A}^{T}\left(t\right)$
+\end_inset
+
+ are less than some 
+\begin_inset Formula $-\lambda$
+\end_inset
+
+ for all 
+\begin_inset Formula $t\geq0$
+\end_inset
+
+, then 
+\begin_inset Formula $\left\Vert \boldsymbol{x}\left(t\right)\right\Vert \rightarrow0$
+\end_inset
+
+ as 
+\begin_inset Formula $t\rightarrow\infty$
+\end_inset
+
+.
+ This can be proved by starting with a quadratic candidate Lyapunov function
+\begin_inset Formula 
+\[
+V=\boldsymbol{x}^{T}\boldsymbol{x}
+\]
+
+\end_inset
+
+ with time-derivative
+\begin_inset Formula 
+\begin{align*}
+\dot{V} & =\,\dot{\boldsymbol{x}}^{T}\boldsymbol{x}+\boldsymbol{x}^{T}\dot{\boldsymbol{x}}\\
+ & =\,\boldsymbol{x}^{T}\left(\boldsymbol{A}\left(t\right)+\boldsymbol{A}^{T}\left(t\right)\right)\boldsymbol{x}\leq-2\lambda\boldsymbol{x}^{T}\boldsymbol{x}=-2\lambda V\\
+ & \Rightarrow\,\dot{V}+2\lambda V\leq0\\
+ & \Rightarrow\,0\leq V\leq V\left(0\right)\mathrm{e}^{-2\lambda t}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The above result is 
+\emph on
+sufficient
+\emph default
+ to show asymptotic stability, but not necessary.
+\end_layout
+
+\begin_layout Section
+Lyapunov-Like Analysis Using Barbalat's Lemma
+\end_layout
+
+\begin_layout Subsection
+Asymptotic Properties of Functions and Their Derivatives
+\end_layout
+
+\begin_layout Standard
+Some important facts to keep in mind
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\dot{g}\left(t\right)\rightarrow0\;\nRightarrow\;g$
+\end_inset
+
+ converges.
+ 
+\begin_inset Formula $\dot{g}\left(t\right)\rightarrow0$
+\end_inset
+
+ means that the function 
+\begin_inset Formula $g\left(t\right)$
+\end_inset
+
+ is getting flatter and flatter, but it does not imply that 
+\begin_inset Formula $g\left(t\right)$
+\end_inset
+
+ converges to a limit
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $g\,\text{converges}\;\nRightarrow\;\dot{g}\left(t\right)\rightarrow0$
+\end_inset
+
+.
+ For example, a function 
+\begin_inset Formula $g\left(t\right)=\mathrm{e}^{-t}\sin\mathrm{e}^{2t}$
+\end_inset
+
+ converges to zero as 
+\begin_inset Formula $t\rightarrow\infty,$
+\end_inset
+
+ but its derivative 
+\begin_inset Formula $\dot{g}\left(t\right)=2\mathrm{e}^{t}\cos\mathrm{e}^{2t}-\mathrm{e}^{-t}\sin\mathrm{e}^{2t}$
+\end_inset
+
+ is unbounded
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $g$
+\end_inset
+
+ is lower bounded and decreasing, then it converges to a limit.
+\end_layout
+
+\begin_layout Subsubsection
+Barbalat's Lemma
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:barbala's-lemma"
+
+\end_inset
+
+Barbalat's Lemma
+\end_layout
+
+\begin_layout Lemma
+Suppose that 
+\begin_inset Formula $\boldsymbol{\dot{x}}=\boldsymbol{f}\left(\boldsymbol{x},t\right)$
+\end_inset
+
+ with scalar function 
+\begin_inset Formula $V\left(\boldsymbol{x},t\right)$
+\end_inset
+
+ that is lower bounded (i.e., has a finite limit as 
+\begin_inset Formula $t\rightarrow\infty$
+\end_inset
+
+), and 
+\begin_inset Formula $\frac{d}{dt}V\leq0$
+\end_inset
+
+ always, and 
+\begin_inset Formula $\frac{d^{2}}{dt^{2}}V$
+\end_inset
+
+ is bounded then 
+\begin_inset Formula $\frac{d}{dt}V\rightarrow0$
+\end_inset
+
+ as 
+\begin_inset Formula $t\rightarrow\infty$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Typically, 
+\begin_inset Formula $V$
+\end_inset
+
+ can be chosen such that 
+\begin_inset Formula $\frac{d}{dt}V=-\left(\text{"error"}\right)^{2}$
+\end_inset
+
+ and the first two conditions of Lemma 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:barbala's-lemma"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ imply the third condition.
 \end_layout
 
 \end_body
