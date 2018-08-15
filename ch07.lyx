@@ -297,9 +297,9 @@ where
 
 
 \begin_inset Formula 
-\[
-\frac{1}{2}\frac{d}{dt}s^{2}\leq-\eta\left|s\right|
-\]
+\begin{equation}
+\frac{1}{2}\frac{d}{dt}s^{2}\leq-\eta\left|s\right|\label{eq:sliding-condition}
+\end{equation}
 
 \end_inset
 
@@ -308,6 +308,25 @@ where
 \end_inset
 
 .
+ Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:sliding-condition"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is known as the 
+\begin_inset Quotes eld
+\end_inset
+
+sliding condition.
+\begin_inset Quotes erd
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -382,6 +401,361 @@ An example system is
 \[
 \hat{f}=-1.5\dot{x}^{2}\cos3x\qquad F=0.5\dot{x}^{2}\left|\cos3x\right|.
 \]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, 
+\begin_inset Formula $s$
+\end_inset
+
+ and 
+\begin_inset Formula $\dot{s}$
+\end_inset
+
+ can be defined as
+\begin_inset Formula 
+\begin{align}
+s= & \dot{\tilde{x}}+\lambda\tilde{x}\nonumber \\
+\dot{s}= & \ddot{\tilde{x}}+\lambda\dot{\tilde{x}}=f+u-\ddot{x}_{d}\lambda\dot{\tilde{x}}.\label{eq:example-sliding-control-sdot}
+\end{align}
+
+\end_inset
+
+For 
+\begin_inset Formula $s>0$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\begin{align*}
+s\,\dot{s} & \leq-\eta\,s\\
+\dot{s} & \leq-\eta
+\end{align*}
+
+\end_inset
+
+and 
+\begin_inset Formula $s=0$
+\end_inset
+
+ is reached in finite time 
+\begin_inset Formula $\left(\leq\frac{\left|s\left(t=0\right)\right|}{\eta}\right)$
+\end_inset
+
+ starting from anywhere.
+ 
+\begin_inset Formula $s=0$
+\end_inset
+
+ is an invariant set meaning that once the trajectory reaches the sliding
+ surface, then it will not leave.
+\end_layout
+
+\begin_layout Standard
+The control law 
+\begin_inset Formula $u$
+\end_inset
+
+ will be chosen such that it satisfies the sliding condition given in Equation
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:sliding-condition"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\begin_inset Formula $\hat{u}$
+\end_inset
+
+ is the approximate control law that makes 
+\begin_inset Formula $\dot{s}=0$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\hat{u}=-\hat{f}+\ddot{x}_{d}-\lambda\dot{\tilde{x}}.\label{eq:example-sliding-control-uhat}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Plugging Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-sliding-control-uhat"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ into Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-sliding-control-sdot"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ gives
+\begin_inset Formula 
+\begin{equation}
+\dot{s}=f-\hat{f}.\label{eq:example-sliding-control-sdot-uhat-plugged-in}
+\end{equation}
+
+\end_inset
+
+To satisfy the sliding condition, a discontinuous 
+\begin_inset Formula $\text{sgn}()$
+\end_inset
+
+ function will be added to Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-sliding-control-sdot-uhat-plugged-in"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\dot{s}=f-\hat{f}-k\text{sgn}\left(s\right)
+\]
+
+\end_inset
+
+such that the 
+\begin_inset Formula $\text{sgn}(s)$
+\end_inset
+
+ function is defined as
+\begin_inset Formula 
+\[
+\text{sgn}(s)=\begin{cases}
++1 & \text{if}\,s>0\\
+-1 & \text{if}\,s<0.
+\end{cases}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $k$
+\end_inset
+
+ can be chosen such that 
+\begin_inset Formula $k=F+\eta$
+\end_inset
+
+, which leads to the controller
+\begin_inset Formula 
+\begin{align}
+u & =\hat{u}-k\text{sgn}\left(s\right)\nonumber \\
+ & =1.5\dot{x}^{2}\cos3x+\ddot{x}\lambda-\left(0.5\dot{x}^{2}\left|\cos3x\right|+\eta\right)\text{sgn}\left(\dot{\tilde{x}}+\lambda\tilde{x}\right).\label{eq:example-sliding-control-u-with-sgn-function}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The control law given in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:example-sliding-control-u-with-sgn-function"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ will ensure that when on the surface 
+\begin_inset Formula $s=0$
+\end_inset
+
+ that the trajectory remains there regardless of what is happening 
+\begin_inset Quotes eld
+\end_inset
+
+outside
+\begin_inset Quotes erd
+\end_inset
+
+ of it.
+ However, there is a downside to this control law due to the addition of
+ the discontinuous 
+\begin_inset Formula $\text{sgn}\left(s\right)$
+\end_inset
+
+ function.
+ The discontinuities added by 
+\begin_inset Formula $\text{sgn}\left(s\right)$
+\end_inset
+
+ function, non-instantaneous switch of the system, and imperfect knowledge
+ of the system leads to what is called chattering, and is show in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:system-with-chattering"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:system-with-chattering"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the state trajectory continually bounces back and forth around 
+\begin_inset Formula $s=0$
+\end_inset
+
+.
+ This can be a problem in many systems because of the high control activity
+ and this may cause the system to have some high-frequency dynamics become
+ excited.
+ A way around this is to have a trade off: a suitable smooth and continuous
+ control law, but with loss of tracking precision.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imgs/First_order_sliding_mode_control.svg
+	scale 150
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+System with chattering
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:system-with-chattering"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The compromise will be to use a smoothing (saturation) function that provides
+ a smooth transition between 
+\begin_inset Formula $-1$
+\end_inset
+
+ and 
+\begin_inset Formula $+1$
+\end_inset
+
+, as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:sgn-and-sat-functions"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imgs/sgn-and-sat-functions.svg
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\text{sgn}\left(s\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\text{sat}\left(\frac{s}{\phi}\right)$
+\end_inset
+
+ functions
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:sgn-and-sat-functions"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
