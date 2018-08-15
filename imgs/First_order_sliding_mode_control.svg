@@ -1,4 +1,4 @@
-<svg id="svg2" version="1.0" viewBox="0 0 196.21994 176.00237" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"><script xmlns=""/>
+<svg id="svg2" version="1.0" viewBox="0 0 196.21994 176.00237" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg">
   <defs id="defs4">
     <clipPath clipPathUnits="userSpaceOnUse" id="clipPath2422">
       <path d="M1455.8,6729.3v-1180h1330.8v1180h-1330.8z" id="path2424"/>
@@ -93,7 +93,7 @@
       <tspan fill="#000000" fill-rule="nonzero" font-family="CMMI10" font-size="13.63637447px" font-variant="normal" font-weight="normal" id="tspan2762" style="writing-mode:lr-tb;" x="102.04207" y="41.025261">s</tspan>
     </text>
     <text font-size="15px" id="text2764" x="111.5312" y="42.178612">
-      <tspan fill="#000000" fill-rule="nonzero" font-family="CMSY10" font-size="13.63637447px" font-variant="normal" font-weight="normal" id="tspan2766" style="writing-mode:lr-tb;" x="111.5312" y="42.178612">=</tspan>
+      <tspan fill="#000000" fill-rule="nonzero" font-family="Helvetica" font-size="13.63637447px" font-variant="normal" font-weight="normal" id="tspan2766" style="writing-mode:lr-tb;" x="111.5312" y="42.178612">=</tspan>
     </text>
     <text font-size="15px" id="text2768" x="123.6131" y="41.947929">
       <tspan fill="#000000" fill-rule="nonzero" font-family="CMR10" font-size="13.63637447px" font-variant="normal" font-weight="normal" id="tspan2770" style="writing-mode:lr-tb;" x="123.6131" y="41.947929">0</tspan>
