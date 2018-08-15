@@ -742,7 +742,11 @@ status open
 \begin_inset Formula $\text{sat}\left(\frac{s}{\phi}\right)$
 \end_inset
 
- functions
+ functions with 
+\begin_inset Formula $\phi=1$
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:sgn-and-sat-functions"
@@ -760,6 +764,184 @@ name "fig:sgn-and-sat-functions"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+In this example, a control law 
+\begin_inset Formula $u$
+\end_inset
+
+ was developed such that inside the boundary layer 
+\begin_inset Formula 
+\[
+u=\hat{u}-k\text{sat}\left(\frac{s}{\phi}\right),
+\]
+
+\end_inset
+
+which means that instead of reaching the surface 
+\begin_inset Formula $s=0$
+\end_inset
+
+ the trajectory reaches a boundary layer 
+\begin_inset Formula $\left|s\right|\leq\phi$
+\end_inset
+
+ in finite time and stays within it, presumably, with a small tracking error.
+ If 
+\begin_inset Formula $\phi$
+\end_inset
+
+ is time-varying because 
+\begin_inset Formula $k\left(\boldsymbol{x},t\right)$
+\end_inset
+
+ is time-varying and then 
+\begin_inset Formula $\left|s\right|\leq\phi\;\Rightarrow\;\frac{1}{2}\frac{d}{dt}s^{2}\leq\left(\dot{\phi}-\eta\right)\left|s\right|$
+\end_inset
+
+.
+ This condition says that if the boundary layer 
+\begin_inset Formula $\phi$
+\end_inset
+
+ is shrinking, then the trajectory needs to be faster than the boundary
+ layer is shrinking.
+ Once inside the boundary layer the control law becomes
+\begin_inset Formula 
+\[
+u=\hat{u}-k\frac{s}{\phi}
+\]
+
+\end_inset
+
+and after the transients
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\dot{s} & =\hat{f}_{d}-f_{d}-\left(k_{d}-\dot{\phi}\right)\frac{s}{\phi}+\mathcal{O}\left(\epsilon\right)\\
+ & =-\frac{k_{d}-\dot{\phi}}{\phi}s+\hat{f}_{d}-f_{d}+\mathcal{O}\left(\epsilon\right)
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\tilde{x}=\mathcal{O}\left(\epsilon\right)$
+\end_inset
+
+.
+ To find 
+\begin_inset Formula $\phi$
+\end_inset
+
+, it is necessary to solve 
+\begin_inset Formula 
+\[
+\dot{\phi}+\lambda\phi=k_{d}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The Modeling/Performance Trade-Offs
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Formula $s$
+\end_inset
+
+-trajectories give insight into 
+\begin_inset Formula $\tilde{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $\phi$
+\end_inset
+
+ can give insight into if the choices of uncertainty are too conservative.
+ If the model is too conservative then the boundary layer will be too large
+ and if the model is on the other end of the spectrum then the 
+\begin_inset Formula $s$
+\end_inset
+
+-trajectories may not enter the boundary layer.
+ These insights are given by
+\begin_inset Formula 
+\[
+\left|\tilde{x}\right|\leq\frac{F_{d}}{\lambda^{n}}
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $F_{d}$
+\end_inset
+
+ is the uncertainty of the model parameters and 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is the uncertainty of the order of the system.
+\end_layout
+
+\begin_layout Standard
+Some examples of limits on 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ are 
+\end_layout
+
+\begin_layout Itemize
+structural unmodeled dynamics (
+\begin_inset Formula $\lambda_{s}$
+\end_inset
+
+) such as flexing and vibration
+\end_layout
+
+\begin_layout Itemize
+motor time constant (
+\begin_inset Formula $\lambda_{a}$
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Itemize
+sampling rates (
+\begin_inset Formula $\lambda_{sample}$
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Standard
+and it is desired to have 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ be as small as possible therefore chose 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ to be 
+\begin_inset Formula $\lambda=\text{min}\left(\lambda_{s},\lambda_{a},\lambda_{sample},\dots\right)$
+\end_inset
+
+.
+ Each 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ should also be as close to one another as possible (roughly the same order
+ of magnitude) otherwise there may be some problems with the model.
 \end_layout
 
 \end_body
