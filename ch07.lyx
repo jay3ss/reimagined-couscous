@@ -234,12 +234,12 @@ s\left(\boldsymbol{x};t\right)=\left(\frac{d}{dt}+\lambda\right)^{n-1}\tilde{x}\
 
  and satisfies the following conditions
 \begin_inset Formula 
-\[
+\begin{equation}
 \left\{ \begin{array}{c}
 \dot{s}\,\text{contains}\,u\\
 s\rightarrow0\;\Rightarrow\;\tilde{x}\left(t\right)\rightarrow0.
-\end{array}\right.
-\]
+\end{array}\right.\label{eq:sliding-control-s-conditions}
+\end{equation}
 
 \end_inset
 
@@ -330,6 +330,12 @@ sliding condition.
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:sliding-control-example"
+
+\end_inset
+
 Perfect Performance - At a Price
 \end_layout
 
@@ -668,6 +674,14 @@ status open
 
 \begin_layout Plain Layout
 System with chattering
+\begin_inset CommandInset citation
+LatexCommand cite
+key "chattersvg"
+literal "false"
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:system-with-chattering"

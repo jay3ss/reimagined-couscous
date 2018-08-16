@@ -7,6 +7,7 @@
 \textclass extbook
 \begin_preamble
 \usepackage{thmtools}
+\usepackage[bottom]{footmisc}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -104,6 +105,25 @@ Phase Plane Analysis
 
 \begin_layout Section
 Introduction
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The material for these notes came from Slotine's text and online lectures
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "slotine2013lectures,slotine1991applied"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

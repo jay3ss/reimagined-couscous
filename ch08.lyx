@@ -42,7 +42,7 @@ theorems-bytype
 \pdf_author "Joshua Saunders"
 \pdf_keywords "fundamentals, lyapunov theory, nonlinear systems, linear systems, jacobian, linearization"
 \pdf_bookmarks true
-\pdf_bookmarksnumbered false
+\pdf_bookmarksnumbered true
 \pdf_bookmarksopen false
 \pdf_bookmarksopenlevel 1
 \pdf_breaklinks false
@@ -118,7 +118,425 @@ Adaptive control is how to exploit the fact that part of the uncertainty
 
  can be described by simply as unknown constants.
  The question is, can the system be made to behave as if unknown constants
- are known?
+ are known? An example can demonstrate how this is possible.
+\end_layout
+
+\begin_layout Standard
+Consider an underwater single-link robot arm such as the one shown in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:single-link-robot-arm"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ with dynamics given in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:single-link-robot-arm-dynamics"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+J\ddot{x}+b\dot{x}\left|\dot{x}\right|+mgl\sin x=u\label{eq:single-link-robot-arm-dynamics}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $J$
+\end_inset
+
+ is the moment of inertia of the motor, 
+\begin_inset Formula $b$
+\end_inset
+
+ is the viscous fluid constant, 
+\begin_inset Formula $mgl$
+\end_inset
+
+ is the rotational torque.
+ A vector of unknowns 
+\begin_inset Formula $\boldsymbol{a}$
+\end_inset
+
+ can be defined such that 
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{a}^{T} & =\left[\begin{array}{ccc}
+a_{1} & a_{2} & a_{3}\end{array}\right]^{T}\\
+ & =\left[\begin{array}{ccc}
+J & b & mgl\end{array}\right]^{T}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The goal of the control problem in this example is to get the robot arm
+ to follow a given trajectory (i.e., this is a tracking control problem, similar
+ to the one seen in Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:sliding-control"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) in the absence of knowing 
+\begin_inset Formula $\boldsymbol{a}$
+\end_inset
+
+.
+ Similar to the example given in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:sliding-control-example"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the first step will be to transform this second-order problem into a first-ord
+er one by defining 
+\begin_inset Formula $s$
+\end_inset
+
+ to be 
+\begin_inset Formula 
+\begin{align}
+s= & \,\dot{\tilde{x}}+\lambda\tilde{x}\nonumber \\
+= & \,\dot{x}-\dot{x}_{r}\label{eq:adaptive-control-example-s-definition}
+\end{align}
+
+\end_inset
+
+where 
+\begin_inset Formula $\dot{x}_{r}=\dot{x}_{d}-\lambda\dot{x}$
+\end_inset
+
+.
+ The 
+\begin_inset Formula $s$
+\end_inset
+
+ given in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:adaptive-control-example-s-definition"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ satisfies the conditions given in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:sliding-control-s-conditions"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and the sliding condition given by Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:sliding-condition"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imgs/one-link-robot-arm-with-mass.svg
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Single-link robot arm
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:single-link-robot-arm"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is a non-autonomous system and therefore Barbalat's lemma will be used
+ to construct a Lyapunov function 
+\begin_inset Formula $V$
+\end_inset
+
+ such that
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $V\left(\boldsymbol{x},t\right)$
+\end_inset
+
+ is lower bounded
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\dot{V}\leq0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\ddot{V}$
+\end_inset
+
+ is bounded
+\end_layout
+
+\begin_layout Standard
+which means that 
+\begin_inset Formula $V\rightarrow0$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $V$
+\end_inset
+
+ be define as
+\begin_inset Formula 
+\begin{align*}
+V= & \,\frac{1}{2}Js^{2}\\
+\dot{V}= & \,sJ\dot{s}\\
+= & \,sJ\left(\ddot{x}-\ddot{x}_{r}\right)\\
+= & \,s\left(u-\boldsymbol{Y}\boldsymbol{a}\right)
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\boldsymbol{Y}=\left[\begin{array}{ccc}
+\ddot{x}_{r} & \dot{x}\left|\dot{x}\right| & \sin x\end{array}\right]$
+\end_inset
+
+.
+ For a moment, let's that we that the vector 
+\begin_inset Formula $\boldsymbol{a}$
+\end_inset
+
+ is actually a known quantity.
+ Then the control law 
+\begin_inset Formula $u$
+\end_inset
+
+ can be constructed as 
+\begin_inset Formula $u=\boldsymbol{Y}\boldsymbol{a}-ks$
+\end_inset
+
+ where 
+\begin_inset Formula $k>0$
+\end_inset
+
+ such that now we get
+\begin_inset Formula 
+\begin{align*}
+\dot{V}= & \,s\left(u-\boldsymbol{Y}\boldsymbol{a}\right)\\
+= & \,s\left(\boldsymbol{Y}\boldsymbol{a}-ks-\boldsymbol{Y}\boldsymbol{a}\right)\\
+= & \,-ks^{2}
+\end{align*}
+
+\end_inset
+
+which, by Barbalat's lemma, means that 
+\begin_inset Formula $\dot{V}\rightarrow0$
+\end_inset
+
+, which implies that 
+\begin_inset Formula $s\rightarrow0$
+\end_inset
+
+, which implies that 
+\begin_inset Formula $\tilde{x}\rightarrow0$
+\end_inset
+
+ and 
+\begin_inset Formula $\dot{\tilde{x}}\rightarrow0$
+\end_inset
+
+ and our job would be done.
+ 
+\end_layout
+
+\begin_layout Standard
+Because 
+\begin_inset Formula $\boldsymbol{a}$
+\end_inset
+
+ is 
+\emph on
+not
+\emph default
+ known let the control law be 
+\begin_inset Formula $u=\boldsymbol{Y}\hat{\boldsymbol{a}}-ks$
+\end_inset
+
+ where 
+\begin_inset Formula $\hat{\boldsymbol{a}}$
+\end_inset
+
+ is the estimate for the unknown parameters and we will also get
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\dot{V}= & \,s\left(u-\boldsymbol{Y}\boldsymbol{a}\right)\\
+= & \,s\left(\boldsymbol{Y}\boldsymbol{\hat{a}}-ks-\boldsymbol{Y}\boldsymbol{a}\right)\\
+= & \,-ks^{2}+s\boldsymbol{Y}\tilde{\boldsymbol{a}}
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\tilde{\boldsymbol{a}}\left(t\right)=\hat{\boldsymbol{a}}\left(t\right)-\boldsymbol{a}\left(t\right)$
+\end_inset
+
+ and is the parameter estimation error.
+ Now the problem is the 
+\begin_inset Formula $\boldsymbol{Y}\tilde{\boldsymbol{a}}$
+\end_inset
+
+ term in the definition of 
+\begin_inset Formula $\dot{V}$
+\end_inset
+
+ which may prevent 
+\begin_inset Formula $\dot{V}$
+\end_inset
+
+from being negative.
+ The solution is to add another positive term to 
+\begin_inset Formula $V$
+\end_inset
+
+ such that after taking its derivative it cancels out the problem term in
+ 
+\begin_inset Formula $\dot{V}$
+\end_inset
+
+.
+ Let's now redefine 
+\begin_inset Formula $V$
+\end_inset
+
+ and 
+\begin_inset Formula $\dot{V}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+V=\, & \frac{1}{2}Js^{2}+\tilde{\boldsymbol{a}}^{T}\boldsymbol{P}^{-1}\tilde{\boldsymbol{a}}\\
+\dot{V}= & \,-ks^{2}+s\boldsymbol{Y}\tilde{\boldsymbol{a}}+\dot{\hat{\boldsymbol{a}}}^{T}\boldsymbol{P}^{-1}\tilde{\boldsymbol{a}}\\
+= & \,-ks^{2}+\left(s\boldsymbol{Y}+\dot{\hat{\boldsymbol{a}}}^{T}\boldsymbol{P}^{-1}\right)\tilde{\boldsymbol{a}}
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\boldsymbol{P}^{-1}$
+\end_inset
+
+ is a symmetric positive definite matrix.
+ The goal now is to have 
+\begin_inset Formula $\left(s\boldsymbol{Y}+\dot{\hat{\boldsymbol{a}}}^{T}\boldsymbol{P}^{-1}\right)\tilde{\boldsymbol{a}}=0$
+\end_inset
+
+ which leads to 
+\begin_inset Formula 
+\[
+\dot{\hat{\boldsymbol{a}}}=\,-\boldsymbol{P}\boldsymbol{Y}^{T}s.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We are now left with two equations: a control law 
+\begin_inset Formula $u=\boldsymbol{Y}\hat{\boldsymbol{a}}-ks$
+\end_inset
+
+ and an adaptation law 
+\begin_inset Formula $\dot{\hat{\boldsymbol{a}}}=\,-\boldsymbol{P}\boldsymbol{Y}^{T}s$
+\end_inset
+
+.
+ The control does its best to cancel the dynamic parameters and replace
+ them with something simple.
+ The adaptation law which can take on any initial values is a differential
+ equation that feeds the control law with the estimate of the unknown parameters
+ 
+\begin_inset Formula $\hat{\boldsymbol{a}}$
+\end_inset
+
+.
+ The combination of the two laws guarantees that Barbalat's lemma works.
+\end_layout
+
+\begin_layout Standard
+Now, starting anywhere an arbitrary desired trajectory and starting with
+ arbitrary initial guesses for the parameters and after some transients
+ the system will behave as if the parameters were known and the tracking
+ errors will disappear.
 \end_layout
 
 \end_body

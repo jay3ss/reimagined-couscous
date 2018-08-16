@@ -7,6 +7,7 @@
 \textclass extbook
 \begin_preamble
 \usepackage{thmtools}
+\usepackage[bottom]{footmisc}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -369,7 +370,7 @@ status open
 
 \begin_layout Plain Layout
 
-%
+
 \backslash
 phantomsection
 \end_layout
@@ -385,9 +386,9 @@ status open
 
 \begin_layout Plain Layout
 
-%
+
 \backslash
-addcontentsline{toc}{chapter}{List of Theorems and Definitions}
+addcontentsline{toc}{chapter}{Bibliography}
 \end_layout
 
 \end_inset
@@ -396,15 +397,11 @@ addcontentsline{toc}{chapter}{List of Theorems and Definitions}
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-listoftheorems
-\end_layout
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "references"
+options "plain"
 
 \end_inset
 
